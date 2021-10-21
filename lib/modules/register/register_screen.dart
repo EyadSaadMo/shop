@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_challenges/modules/login/login_Screen.dart';
+import 'package:flutter_challenges/modules/shop_app/login/shop_login_screen.dart';
 import 'package:flutter_challenges/shared/component/components.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -11,120 +11,142 @@ class RegisterScreen extends StatelessWidget {
     var passwordController = TextEditingController();
     var confirmPasswordController = TextEditingController();
     var phoneController = TextEditingController();
-    var formKey= GlobalKey<FormState>();
+    var formKey = GlobalKey<FormState>();
     return Scaffold(
-      backgroundColor: Color(0xffF8F8F8),
+      backgroundColor:Colors.white,
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.white,
-        leading: IconButton(onPressed: (){
-          Navigator.pop(context);
-        }, icon:Icon( Icons.arrow_back_outlined,color: Colors.black,)),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back_outlined,
+              color: Colors.black,
+            )),
       ),
-      body: SingleChildScrollView(
-        child: Center(
+      body: Center(
+        child: SingleChildScrollView(
           child: Form(
             key: formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  'Let\'s Get Started!',
-                  style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 10.0,
-                ),
-                Text(
-                  'Create an account of Q Affurs to get all features',
-                  style: TextStyle(color: Colors.grey),
-                ),
-                SizedBox(height: 15.0,),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Let\'s Get Started!',
+                    style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Text(
+                    'Create an account of Q Affurs to get all features',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  SizedBox(
+                    height: 15.0,
+                  ),
+                  Column(
                     children: [
                       defaultFormField(
-
-                        validate: (String value){
-                          if(value.isEmpty){
+                        validate: (value){
+                          if(value!.isEmpty || value.trim().length == 0) {
                             return 'required';
                           }
-                          else return null;
+                          if(! RegExp(r"^([a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?)$").hasMatch(value)){
+                            return 'please enter valid email';
+                          }
+                          return null;
                         },
                         controller: emailController,
                         type: TextInputType.emailAddress,
-                        hint: 'email',
-                        prefixIcon: Icon(Icons.person),
+                        label: 'email',
+                        prefix: Icons.email,
                       ),
-                      SizedBox(height: 10.0,),
+                      SizedBox(
+                        height: 15.0,
+                      ),
                       defaultFormField(
-                        validate: (String value){
-                          if(value.isEmpty){
+
+                        validate: ( value) {
+                          if (value!.isEmpty) {
                             return 'required';
-                          }
-                          else return null;
+                          } else
+                            return null;
                         },
                         controller: phoneController,
                         type: TextInputType.number,
-                        hint: 'phone',
-                        prefixIcon: Icon(Icons.phone_android_outlined),
+                        label: 'phone',
+                        prefix: Icons.phone,
+                      ),
+                      SizedBox(
+                        height: 15.0,
                       ),
                       defaultFormField(
-                        validate: (String value){
-                          if(value.isEmpty){
+                        validate: ( value) {
+                          if (value!.isEmpty) {
                             return 'required';
-                          }
-                          else return null;
+                          } else
+                            return null;
                         },
                         controller: passwordController,
                         type: TextInputType.visiblePassword,
-                        hint: 'password',
-                        prefixIcon: Icon(Icons.lock),
+                        label: 'password',
+                        prefix: Icons.lock,
+                        suffix: Icons.remove_red_eye,
+                        isPassword: true,
                       ),
-                      SizedBox(height: 10.0,),
+                      SizedBox(
+                        height: 10.0,
+                      ),
                       defaultFormField(
-
-                        validate: (String value){
-                          if(value.isEmpty){
-                            return 'required';
-                          }
-                          else return null;
+                        validate: ( value) {
+                          if (value != confirmPasswordController.text) {
+                            return 'Matching field';
+                          } else
+                            return null;
                         },
                         controller: confirmPasswordController,
                         type: TextInputType.visiblePassword,
-                        hint: 'confirm password',
-                        prefixIcon: Icon(Icons.lock),
+                        label: 'confirm password',
+                        prefix: Icons.lock,
+                        suffix: Icons.remove_red_eye,
+                        isPassword: true,
                       ),
-
                     ],
                   ),
-                ),
-                SizedBox(height: 10.0,),
-                defaultButton(
-                  text: 'create',
-                   function: (){
-                  if(formKey.currentState!.validate()){
-                    return;
-                  }
-                  else{
-                    formKey.currentState!.save();
-                  }
-                },
-                ),
-                SizedBox(height: 10.0,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Already have an account?'),
-                    defaultTextButton(
-                        function: (){
-                          navigateTo(context, LoginScreen());
-                        }, text: 'Login Here'),
-                  ],
-                ),
-              ],
+                  SizedBox(
+                    height: 15.0,
+                  ),
+                  defaultButton(
+                    text: 'create',
+                    function: () {
+                      if (formKey.currentState!.validate()) {
+                        return;
+                      } else {
+                        formKey.currentState!.save();
+                      }
+                    },
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Already have an account?'),
+                      defaultTextButton(
+                          function: () {
+                            navigateTo(context, ShopLoginScreen());
+                          },
+                          text: 'Login '),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),

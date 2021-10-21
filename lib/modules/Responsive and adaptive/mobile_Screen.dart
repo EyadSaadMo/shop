@@ -14,7 +14,6 @@ class MobileScreen extends StatelessWidget {
           ),
           Expanded(
             flex: 2,
-
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
