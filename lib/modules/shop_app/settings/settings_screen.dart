@@ -16,6 +16,10 @@ class SettingsScreen extends StatelessWidget {
     return BlocConsumer<ShopCubit, ShopStates>(
       listener: (context, state) {},
       builder: (context, state) {
+        var model = ShopCubit.get(context).userModel;
+        nameController.text = model!.data.name;
+        emailController.text = model.data.email;
+        phoneController.text = model.data.phone;
         return ConditionalBuilder(
           condition: ShopCubit.get(context).userModel != null,
           builder: (context) {
@@ -27,7 +31,7 @@ class SettingsScreen extends StatelessWidget {
                     key: formKey,
                     child: Column(
                       children: [
-                        if (state is ShopSuccessUpdateUserState)
+                        if (state is ShopLoadingUpdateUserState)
                           LinearProgressIndicator(),
                         SizedBox(
                           height: 20.0,
@@ -73,11 +77,13 @@ class SettingsScreen extends StatelessWidget {
                         ),
                         defaultButton(
                             function: () {
-                              if (formKey.currentState!.validate()) {
+                              if(formKey.currentState!.validate())
+                              {
                                 ShopCubit.get(context).updateUserData(
-                                    name: nameController.text,
-                                    email: emailController.text,
-                                    phone: phoneController.text);
+                                  name: nameController.text,
+                                  phone: phoneController.text,
+                                  email: emailController.text,
+                                );
                               }
                             },
                             text: 'update'),

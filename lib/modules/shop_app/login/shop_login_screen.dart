@@ -32,7 +32,7 @@ class ShopLoginScreen extends StatelessWidget {
               }
               else{
                 print(state.loginModel.message);
-                showToast(msg: state.loginModel.message.toString(), state: ToastStates.ERROR);
+                showToast(msg: state.loginModel.message, state: ToastStates.ERROR);
 
               }
             }

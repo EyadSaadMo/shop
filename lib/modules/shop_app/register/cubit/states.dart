@@ -3,7 +3,7 @@ abstract class ShopRegisterStates{}
 class ShopRegisterInitialState extends ShopRegisterStates{}
 class ShopRegisterLoadingState extends ShopRegisterStates{}
 class ShopRegisterSuccessState extends ShopRegisterStates{
-  late final ShopLoginModel? loginModel;
+  late final ShopLoginModel loginModel;
 
   ShopRegisterSuccessState(this.loginModel);
 }
