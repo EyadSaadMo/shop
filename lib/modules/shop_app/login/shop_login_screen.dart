@@ -9,7 +9,6 @@ import 'package:flutter_challenges/modules/shop_app/register/register_screen.dar
 import 'package:flutter_challenges/shared/component/components.dart';
 import 'package:flutter_challenges/shared/network/local/cache_helper.dart';
 
-
 class ShopLoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -20,22 +19,21 @@ class ShopLoginScreen extends StatelessWidget {
       create: (context) => ShopLoginCubit(),
       child: BlocConsumer<ShopLoginCubit, ShopLoginStates>(
         listener: (context, state) {
-          if(state is ShopLoginSuccessState)
-            {
-              if(state.loginModel.status){
-                print(state.loginModel.message);
-                print(state.loginModel.data.token);
-                CacheHelper.saveData(key: 'token', value: state.loginModel.data.token)
-                .then((value) {
-                  navigateAndFinish(context, ShopLayout());
-                });
-              }
-              else{
-                print(state.loginModel.message);
-                showToast(msg: state.loginModel.message, state: ToastStates.ERROR);
-
-              }
+          if (state is ShopLoginSuccessState) {
+            if (state.loginModel.status) {
+              print(state.loginModel.message);
+              print(state.loginModel.data.token);
+              CacheHelper.saveData(
+                      key: 'token', value: state.loginModel.data.token)
+                  .then((value) {
+                navigateAndFinish(context, ShopLayout());
+              });
+            } else {
+              print(state.loginModel.message);
+              showToast(
+                  msg: state.loginModel.message, state: ToastStates.ERROR);
             }
+          }
         },
         builder: (context, state) {
           return Scaffold(
@@ -98,8 +96,7 @@ class ShopLoginScreen extends StatelessWidget {
                             controller: emailController,
                             type: TextInputType.emailAddress,
                             label: 'email',
-                            prefix:Icons.email_outlined,
-
+                            prefix: Icons.email_outlined,
                           ),
                         ),
                         SizedBox(
@@ -134,16 +131,18 @@ class ShopLoginScreen extends StatelessWidget {
                           height: 30.0,
                         ),
                         ConditionalBuilder(
-                            condition: state is! ShopLoginLoadingState,
-                            builder: (context)=>defaultButton(
-                                text: 'login',
-                                function: (){
-                                  if(formKey.currentState!.validate()){
-                                    ShopLoginCubit.get(context).userLogin(email: emailController.text, password: passwordController.text);
-                                  }
+                          condition: state is! ShopLoginLoadingState,
+                          builder: (context) => defaultButton(
+                              text: 'login',
+                              function: () {
+                                if (formKey.currentState!.validate()) {
+                                  ShopLoginCubit.get(context).userLogin(
+                                      email: emailController.text,
+                                      password: passwordController.text);
                                 }
-                            ),
-                            fallback: (context)=>Center(child: CircularProgressIndicator()),
+                              }),
+                          fallback: (context) =>
+                              Center(child: CircularProgressIndicator()),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -168,5 +167,3 @@ class ShopLoginScreen extends StatelessWidget {
     );
   }
 }
-
-
