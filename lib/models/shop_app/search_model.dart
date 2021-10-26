@@ -8,16 +8,16 @@ class SearchModel {
   }
 }
 class Data {
-late final  int currentPage;
+late final  int? currentPage;
  late final List<Product> data = [];
  late final String firstPageUrl;
- late final int from;
- late final int lastPage;
+ late final int? from;
+ late final int? lastPage;
   late final String lastPageUrl;
  late final String path;
-  late final int perPage;
- late final int to;
-  late final int total;
+  late final int? perPage;
+ late final int? to;
+  late final int? total;
   Data.fromJson(Map<String, dynamic> json) {
     currentPage = json['current_page'];
 
@@ -37,10 +37,10 @@ late final  int currentPage;
 }
 
 class Product {
- late final int  id;
+ late final int?  id;
  late final dynamic price;
  late final  dynamic oldPrice;
- late final  int discount;
+ late final  int? discount;
  late final  String image;
  late final String name;
  late final String description;
