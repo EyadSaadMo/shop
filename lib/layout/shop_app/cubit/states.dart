@@ -41,3 +41,10 @@ class ShopSuccessUpdateUserState extends ShopStates{
 }
 class ShopLoadingUpdateUserState extends ShopStates{}
 class ShopErrorUpdateUserState extends ShopStates{}
+
+class ShopLoadingProductDetailsState extends ShopStates {}
+class ShopSuccessProductDetailsState extends ShopStates {}
+class ShopErrorProductDetailsState extends ShopStates {
+  late final String error;
+  ShopErrorProductDetailsState(this.error);
+}

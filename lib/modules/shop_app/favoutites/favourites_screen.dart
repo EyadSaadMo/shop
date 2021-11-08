@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_challenges/layout/shop_app/cubit/cubit.dart';
 import 'package:flutter_challenges/layout/shop_app/cubit/states.dart';
-import 'package:flutter_challenges/models/shop_app/favourites_model.dart';
 import 'package:flutter_challenges/shared/component/components.dart';
 import 'package:flutter_challenges/shared/style/colors.dart';
 
@@ -25,8 +24,8 @@ class FavouritesScreen extends StatelessWidget {
                   context),
               separatorBuilder: (context, index) => myDivider(),
               itemCount:
-                  ShopCubit.get(context).categoriesModel!.data.data.length),
-          fallback: (context) => Center(child: CircularProgressIndicator()),
+                  ShopCubit.get(context).favouritesModel!.data.data.length),
+          fallback: (context) =>Center(child: CircularProgressIndicator()),
         );
       },
     );

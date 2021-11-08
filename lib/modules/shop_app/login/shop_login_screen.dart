@@ -40,19 +40,7 @@ class ShopLoginScreen extends StatelessWidget {
             backgroundColor: Colors.white,
             // Color(0xffF8F8F8),
             appBar: AppBar(
-              elevation: 0.0,
-              backgroundColor: Colors.white,
-              leading: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(
-                    Icons.arrow_back_outlined,
-                    color: Colors.black,
-                  )),
-              // actions: [
-              //   IconButton(icon:Icon(Icons.brightness_6_outlined,color: Colors.blue,),onPressed:(){ AppCubit.get(context).changeAppMode();},),
-              // ],
+
             ),
             body: Form(
               key: formKey,

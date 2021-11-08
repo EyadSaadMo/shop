@@ -6,6 +6,7 @@ import 'package:flutter_challenges/models/shop_app/change_favourites_model.dart'
 import 'package:flutter_challenges/models/shop_app/favourites_model.dart';
 import 'package:flutter_challenges/models/shop_app/home_model.dart';
 import 'package:flutter_challenges/models/shop_app/login_model.dart';
+import 'package:flutter_challenges/models/shop_app/products_details_model.dart';
 import 'package:flutter_challenges/modules/shop_app/categories/categories_screen.dart';
 import 'package:flutter_challenges/modules/shop_app/favoutites/favourites_screen.dart';
 import 'package:flutter_challenges/modules/shop_app/products/products_screen.dart';
@@ -108,6 +109,20 @@ class ShopCubit extends Cubit<ShopStates> {
       print(error.toString());
       emit(ShopErrorGetFavouritesState());
     });
+  }
+
+  ProductDetailsModel? productDetailsModel;
+  void getDetails(){
+    emit(ShopLoadingProductDetailsState());
+    DioHelper.getData(url: PRODUCT_DETAILS,).then((value) {
+      productDetailsModel= ProductDetailsModel.fromJson(value.data);
+      emit(ShopSuccessProductDetailsState());
+    }).catchError((error){
+      print(error.toString());
+      emit(ShopErrorProductDetailsState(error.toString()));
+
+    });
+
   }
 
   ShopLoginModel? userModel;
