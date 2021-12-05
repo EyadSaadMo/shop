@@ -9,8 +9,11 @@ import 'package:flutter_challenges/shared/style/colors.dart';
 import 'package:flutter_challenges/shared/style/icon_broken.dart';
 
 class DetailsScreen extends StatelessWidget {
-  final int id;
-  DetailsScreen(this.id);
+ // late final  ProductDetailsData? model;
+ // DetailsScreen(this.model);
+  // final List? index;
+  // DetailsScreen(this.index);
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ShopCubit,ShopStates>(
@@ -29,12 +32,19 @@ class DetailsScreen extends StatelessWidget {
                        ),
                      ],
                    ),
-                   body:  ListView.separated(
-                     itemBuilder: (context,index)=>buildDetailsItem(context, ShopCubit.get(context).productDetailsModel!.data.data[index]),
-                     separatorBuilder: (context,index)=>myDivider(),
-                     itemCount: ShopCubit.get(context).productDetailsModel!.data.data.length,
+                   body:
+                       Column(
+                         children: [
+                           Expanded(child:  buildDetailsItem(context,ShopCubit.get(context).productDetailsModel!.data.data[0] ),),
 
-                   ),
+                         ],
+                       ),
+                   // body:  ListView.separated(
+                   //   itemBuilder: (context,index)=>buildDetailsItem(context, ShopCubit.get(context).productDetailsModel!.data.data[index]),
+                   //   separatorBuilder: (context,index)=>myDivider(),
+                   //   itemCount: ShopCubit.get(context).productDetailsModel!.data.data.length,
+                   //
+                   // ),
                    bottomNavigationBar: Padding( padding: EdgeInsets.all(20.0), child:defaultButton(text: 'Add to chart', function: (){
                      showToast(msg: 'Added Successfully', state: ToastStates.SUCCESS);
                    })),
@@ -47,8 +57,7 @@ class DetailsScreen extends StatelessWidget {
   }
   Widget buildDetailsItem(context,ProductDetailsData? model)=> Padding(
     padding: const EdgeInsets.all(20.0),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    child: ListView(
       children: [
         Container(
           width: double.infinity,

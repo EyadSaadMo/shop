@@ -15,13 +15,13 @@ import 'shared/cubit/cubit.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = BlocObserver();
-    // bool isDark = CacheHelper.getData(key: 'isDark');
+  // bool isDark = CacheHelper.getData(key: 'isDark');
   DioHelper.init();
   await CacheHelper.init();
   bool? onBoarding = CacheHelper.getData(key: 'onBoarding');
-   token = CacheHelper.getData(key: 'token');
-   print(token);
-   Widget widget= ShopLayout();
+  token = CacheHelper.getData(key: 'token');
+  print(token);
+  Widget widget= ShopLayout();
   if(onBoarding != null)
   {
     if(token != null) widget = ShopLayout();
@@ -47,11 +47,11 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               create: (context) =>
                   AppCubit()
-                    // ..changeAppMode(fromShared: isDark)
+            // ..changeAppMode(fromShared: isDark)
           ),
           BlocProvider(
               create: (context) =>
-                  ShopCubit()..getHomeData()..getCategories()..getFavourites()..getUserData()..getDetails()
+              ShopCubit()..getHomeData()..getCategories()..getFavourites()..getUserData()..getDetails()
           ),
         ],
         child: BlocConsumer<AppCubit, AppStates>(

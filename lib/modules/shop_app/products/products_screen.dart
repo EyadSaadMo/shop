@@ -224,7 +224,7 @@ class ProductsScreen extends StatelessWidget {
           ),
         ),
     onTap: (){
-      navigateTo(context, DetailsScreen(model.id));
+      navigateTo(context, DetailsScreen());
     },
   );
   Widget buildCategoriesItem(DataModel? model) => Stack(
