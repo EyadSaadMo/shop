@@ -39,7 +39,7 @@ dependencies:
   conditional_builder_null_safety: ^0.0.6
   fluttertoast: ^8.0.8
   carousel_slider: ^4.0.0
-#  draggable_flutter_list: ^1.0.3
+  flutter_launcher_icons:
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -49,12 +49,15 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+  uses-material-design: true
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
-  uses-material-design: true
-
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/icon.jpg"
   assets:
     - assets/images/
   fonts:
