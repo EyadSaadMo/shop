@@ -112,11 +112,9 @@ class ShopCubit extends Cubit<ShopStates> {
   }
 
   ProductDetailsModel? productDetailsModel;
-  void getDetails(int detailsId){
+  void getDetails(){
     emit(ShopLoadingProductDetailsState());
-    DioHelper.postData(url: PRODUCT_DETAILS, data: {
-      "details_id":detailsId,
-    },token: token).then((value) {
+    DioHelper.getData(url: PRODUCT_DETAILS).then((value) {
       productDetailsModel  = ProductDetailsModel.fromJson(value.data);
       emit(ShopSuccessProductDetailsState());
     }).catchError((error){

@@ -225,7 +225,7 @@ class ProductsScreen extends StatelessWidget {
           ),
         ),
     onTap: (){
-      ShopCubit.get(context).getDetails(model.id);
+      // ShopCubit.get(context).getDetails(model.id);
     },
   );
   Widget buildCategoriesItem(DataModel? model) => Stack(
