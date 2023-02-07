@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../core/style/colors.dart';
-import '../cubit/cubit.dart';
-
+import '../../core/cubit/cubit.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 Widget buildListProduct(model, context,{bool? isOldPrice= true}) => Padding(
   padding: const EdgeInsets.all(20.0),
   child: Container(
@@ -13,7 +13,7 @@ Widget buildListProduct(model, context,{bool? isOldPrice= true}) => Padding(
           alignment: AlignmentDirectional.bottomStart,
           children: [
             Image(
-              image: NetworkImage(model.image),
+              image: CachedNetworkImageProvider(model.image),
               fit: BoxFit.cover,
               width: 120,
               height: 120.0,

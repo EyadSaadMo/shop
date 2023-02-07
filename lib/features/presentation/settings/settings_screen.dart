@@ -1,13 +1,16 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:flutter_challenges/features/presentation/settings/cubit/update_user_cubit.dart';
+import 'package:flutter_challenges/features/presentation/settings/profile_cubit/profile_cubit.dart';
 import '../../../core/cubit/cubit.dart';
 import '../../../core/cubit/states.dart';
 import '../../../core/style/constants.dart';
-import '../../../core/widgets/custom_button.dart';
-import '../../../core/widgets/tff.dart';
+import '../../widgets/custom_button.dart';
+import '../../widgets/tff.dart';
 class SettingsScreen extends StatelessWidget {
+  static const routeName = 'settings';
+
   @override
   Widget build(BuildContext context) {
     var formKey = GlobalKey<FormState>();
@@ -17,12 +20,12 @@ class SettingsScreen extends StatelessWidget {
     return BlocConsumer<ShopCubit, ShopStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var model = ShopCubit.get(context).userModel;
+        var model = ProfileCubit.get(context).userModel;
         nameController.text = model!.data.name;
         emailController.text = model.data.email;
         phoneController.text = model.data.phone;
         return ConditionalBuilder(
-          condition: ShopCubit.get(context).userModel != null,
+          condition: ProfileCubit.get(context).userModel != null,
           builder: (context) {
             return Scaffold(
               body: SingleChildScrollView(
@@ -32,7 +35,7 @@ class SettingsScreen extends StatelessWidget {
                     key: formKey,
                     child: Column(
                       children: [
-                        if (state is ShopLoadingUpdateUserState)
+                        if (state is UpdateUserLoadingState)
                           LinearProgressIndicator(),
                         SizedBox(
                           height: 20.0,
@@ -46,6 +49,7 @@ class SettingsScreen extends StatelessWidget {
                               if (value.isEmpty) {
                                 return 'required';
                               }
+                              return null;
                             }),
                         SizedBox(
                           height: 20.0,
@@ -80,7 +84,7 @@ class SettingsScreen extends StatelessWidget {
                             function: () {
                               if(formKey.currentState!.validate())
                               {
-                                ShopCubit.get(context).updateUserData(
+                                UpdateUserCubit.get(context).updateUserData(
                                   name: nameController.text,
                                   phone: phoneController.text,
                                   email: emailController.text,

@@ -6,7 +6,7 @@ import '../network/local/cache_helper.dart';
 void signOut(context) {
   CacheHelper.removeData(key: 'token').then((value) {
     if (value) {
-      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (ctx)=>ShopLoginScreen()), (route) => false);
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (ctx)=>LoginScreen()), (route) => false);
     }
   });
 }
@@ -16,4 +16,3 @@ void signOut(context) {
     pattern.allMatches(text!).forEach((match) => print(match.group(0)));
   }
  late String? token ;
-late String? uId='';

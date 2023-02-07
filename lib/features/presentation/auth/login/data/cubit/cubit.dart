@@ -5,7 +5,7 @@ import 'package:flutter_challenges/features/presentation/auth/login/domain/login
 
 import '../../../../../../core/network/remote/dio_helper.dart';
 import '../../../../../../core/network/remote/end_points.dart';
-import '../../states.dart';
+import 'states.dart';
 
 class LoginCubit extends Cubit<ShopLoginStates> {
   LoginCubit() : super(ShopLoginInitialState());

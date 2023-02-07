@@ -6,7 +6,7 @@ Widget defaultButton({
   required Function function,
 }) =>
     Container(
-      height: 40.0,
+      height: 60.0,
       width: double.infinity,
       child: MaterialButton(
         color: Colors.blue,

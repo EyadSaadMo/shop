@@ -7,3 +7,4 @@
  const UPDATE_PROFILE = 'update-profile';
  const SEARCH ='products/search';
  const PRODUCT_DETAILS ='products';
+ const CART ='carts';

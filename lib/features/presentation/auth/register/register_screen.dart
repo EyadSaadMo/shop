@@ -4,18 +4,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/network/local/cache_helper.dart';
 import '../../../../core/style/constants.dart';
-import '../../../../core/widgets/custom_button.dart';
-import '../../../../core/widgets/text_button.dart';
-import '../../../../core/widgets/tff.dart';
-import '../../../../core/widgets/toast_screen.dart';
-import '../../shop_layout.dart';
+import '../../../widgets/custom_button.dart';
+import '../../../widgets/text_button.dart';
+import '../../../widgets/tff.dart';
+import '../../../widgets/toast_screen.dart';
+import '../../home/shop_layout.dart';
 import '../login/data/cubit/cubit.dart';
 import '../login/presentation/screens/shop_login_screen.dart';
 import 'cubit/cubit.dart';
 import 'cubit/states.dart';
 
-class ShopRegisterScreen extends StatelessWidget {
-  const ShopRegisterScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatelessWidget {
+  static const routeName = 'register';
+
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +38,8 @@ class ShopRegisterScreen extends StatelessWidget {
                         key: 'token', value: state.loginModel.data.token)
                     .then((value) {
                   token = state.loginModel.data.token;
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (context) => ShopLayout()),
-                          (Route<dynamic> route) => false);
+                  Navigator.of(context).pushReplacementNamed(
+                      ShopLayout.routeName);
                 });
               } else {
                 print(state.loginModel.status);
@@ -220,7 +220,7 @@ class ShopRegisterScreen extends StatelessWidget {
                             Text('Already have an account?'),
                             defaultTextButton(
                                 function: () {
-                                 Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>ShopLoginScreen()));
+                                 Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>LoginScreen()));
                                 },
                                 text: 'Login '),
                           ],

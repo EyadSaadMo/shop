@@ -2,13 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/widgets/divider.dart';
-import '../../../core/widgets/list_product.dart';
-import '../../../core/widgets/tff.dart';
+import '../../widgets/divider.dart';
+import '../../widgets/list_product.dart';
+import '../../widgets/tff.dart';
 import 'cubit/cubit.dart';
 import 'cubit/states.dart';
 
 class SearchScreen extends StatelessWidget {
+  static const routeName = 'search';
+
   @override
   Widget build(BuildContext context) {
     var formKey = GlobalKey<FormState>();

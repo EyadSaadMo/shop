@@ -1,5 +1,7 @@
+import 'package:flutter_challenges/features/domain/change_cart_model.dart';
 import 'package:flutter_challenges/features/domain/change_favourites_model.dart';
 import 'package:flutter_challenges/features/presentation/auth/login/domain/login_model.dart';
+import 'package:flutter_challenges/features/presentation/cart/cubit/cart_cubit.dart';
 
 abstract class ShopStates {}
 
@@ -11,11 +13,6 @@ class ShopErrorHomeDataState extends ShopStates {
   late final String error;
   ShopErrorHomeDataState(this.error);
 }
-class ShopSuccessCategoriesState extends ShopStates {}
-class ShopErrorCategoriesState extends ShopStates {
-  late final String error;
-  ShopErrorCategoriesState(this.error);
-}
 class ShopSuccessChangeFavouritesState extends ShopStates{
  late final ChangeFavouritesModel model;
 
@@ -24,27 +21,38 @@ class ShopSuccessChangeFavouritesState extends ShopStates{
 class ShopErrorChangeFavouritesState extends ShopStates{}
 class ShopChangeFavouritesState extends ShopStates{}
 class ShopSuccessGetFavouritesState extends ShopStates{}
+class ShopSuccessGetCartsState extends ShopStates{}
 class ShopLoadingGetFavouritesState extends ShopStates{}
+class ShopLoadingGetCartsState extends ShopStates{}
 class ShopErrorGetFavouritesState extends ShopStates{}
-class ShopSuccessUserDataState extends ShopStates{
-  final LoginModel loginModel;
+class ShopErrorGetCartsState extends ShopStates{}
 
-  ShopSuccessUserDataState(this.loginModel);
+
+
+
+class CartInitial extends ShopStates {
+  @override
+  List<Object> get props => [];
 }
-class ShopLoadingUserDataState extends ShopStates{}
-class ShopErrorUserDataState extends ShopStates{}
-
-class ShopSuccessUpdateUserState extends ShopStates{
-  final LoginModel loginModel;
-
-  ShopSuccessUpdateUserState(this.loginModel);
+class CartIncrementCounter extends ShopStates {
+  @override
+  List<Object> get props => [];
 }
-class ShopLoadingUpdateUserState extends ShopStates{}
-class ShopErrorUpdateUserState extends ShopStates{}
-
-class ShopLoadingProductDetailsState extends ShopStates {}
-class ShopSuccessProductDetailsState extends ShopStates {}
-class ShopErrorProductDetailsState extends ShopStates {
-  late final String error;
-  ShopErrorProductDetailsState(this.error);
+class CartDecrementCounter extends ShopStates {
+  @override
+  List<Object> get props => [];
 }
+class ShopChangeCartState extends ShopStates {
+  @override
+  List<Object> get props => [];
+}
+class ShopErrorChangeShopStates extends ShopStates {
+  @override
+  List<Object> get props => [];
+}
+class ShopSuccessChangeCartStates extends ShopStates {
+  final ChangeCartModel changeCartModel;
+  ShopSuccessChangeCartStates(this.changeCartModel);
+  @override
+  // TODO: implement props
+  List<Object?> get props => [changeCartModel];}

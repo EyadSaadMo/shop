@@ -4,16 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../core/network/local/cache_helper.dart';
-import '../../../../../../core/widgets/custom_button.dart';
-import '../../../../../../core/widgets/tff.dart';
-import '../../../../../../core/widgets/toast_screen.dart';
-import '../../../../shop_layout.dart';
+import '../../../../../widgets/custom_button.dart';
+
+import '../../../../../widgets/tff.dart';
+import '../../../../../widgets/toast_screen.dart';
+import '../../../../home/shop_layout.dart';
 import '../../../register/register_screen.dart';
 import '../../data/cubit/cubit.dart';
-import '../../states.dart';
+import '../../data/cubit/states.dart';
 
 
-class ShopLoginScreen extends StatelessWidget {
+class LoginScreen extends StatelessWidget {
+  static const routeName = 'login';
+
   @override
   Widget build(BuildContext context) {
     var emailController = TextEditingController();
@@ -30,10 +33,8 @@ class ShopLoginScreen extends StatelessWidget {
               CacheHelper.saveData(
                       key: 'token', value: state.loginModel.data.token)
                   .then((value) {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => ShopLayout()),
-                        (Route<dynamic> route) => false);
+                Navigator.of(context).pushReplacementNamed(
+                    ShopLayout.routeName);
               });
             } else {
               print(state.loginModel.message);
@@ -157,7 +158,7 @@ class ShopLoginScreen extends StatelessWidget {
                             Text('Don\'have an account?'),
                             TextButton(
                                 onPressed: () {
-                                 Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>ShopRegisterScreen()));
+                                 Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>RegisterScreen()));
                                 },
                                 child: Text('Register Now'))
                           ],
