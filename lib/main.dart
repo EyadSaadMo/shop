@@ -1,33 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_challenges/core/utilis/screen%20size/screen_size.dart';
-import 'package:flutter_challenges/features/presentation/auth/login/domain/login_model.dart';
-import 'package:flutter_challenges/features/presentation/auth/register/register_screen.dart';
-import 'package:flutter_challenges/features/presentation/cart/cart_screen.dart';
-import 'package:flutter_challenges/features/presentation/cart/cart_screen.dart';
-import 'package:flutter_challenges/features/presentation/cart/cubit/cart_cubit.dart';
-import 'package:flutter_challenges/features/presentation/categories/categories_screen.dart';
-import 'package:flutter_challenges/features/presentation/categories/cubit/categories_cubit.dart';
-import 'package:flutter_challenges/features/presentation/details/cubit/details_cubit.dart';
-import 'package:flutter_challenges/features/presentation/favoutites/favourites_screen.dart';
-import 'package:flutter_challenges/features/presentation/products/products_screen.dart';
-import 'package:flutter_challenges/features/presentation/search/search_screen.dart';
-import 'package:flutter_challenges/features/presentation/settings/settings_screen.dart';
-
-import 'core/cubit/cubit.dart';
 import 'core/network/local/cache_helper.dart';
 import 'core/network/remote/dio_helper.dart';
 import 'core/style/constants.dart';
 import 'core/theme/states.dart';
 import 'core/theme/theme_cubit.dart';
 import 'core/theme/themes.dart';
-import 'features/presentation/auth/login/data/cubit/cubit.dart';
-import 'features/presentation/details/view/details_screen.dart';
-import 'features/presentation/onboarding/onBoarding_screen.dart';
-import 'features/presentation/home/shop_layout.dart';
-import 'features/presentation/auth/login/presentation/screens/shop_login_screen.dart';
-import 'features/presentation/settings/cubit/update_user_cubit.dart';
-import 'features/presentation/settings/profile_cubit/profile_cubit.dart';
+import 'features/auth/login/presentaion/cubit/cubit.dart';
+import 'features/auth/login/presentaion/view/login_screen.dart';
+import 'features/auth/register/presentaion/view/register_screen.dart';
+import 'features/cart/presentation/view/cart_screen.dart';
+import 'features/categories/presentaion/cubit/categories_cubit.dart';
+import 'features/categories/presentaion/view/categories_screen.dart';
+import 'features/details/presentaion/cubit/details_cubit.dart';
+import 'features/details/presentaion/view/details_screen.dart';
+import 'features/favoutites/presentaion/view/favourites_screen.dart';
+import 'features/home/presentaion/cubit/cubit.dart';
+import 'features/home/presentaion/view/shop_layout.dart';
+import 'features/onboarding/presentation/view/onBoarding.dart';
+import 'features/onboarding/presentation/view/splash.dart';
+import 'features/products/presentaion/view/products_screen.dart';
+import 'features/search/presentaion/view/search_screen.dart';
+import 'features/settings/presentaion/cubit/update_user_cubit.dart';
+import 'features/settings/presentaion/profile_cubit/profile_cubit.dart';
+import 'features/settings/presentaion/view/settings_screen.dart';
+
 
 
 void main() async {
@@ -38,13 +35,13 @@ void main() async {
   bool? onBoarding = CacheHelper.getData(key: 'onBoarding');
    token = CacheHelper.getData(key: 'token');
   // print(token);
-  Widget widget= ShopLayout();
+  Widget widget= Layout();
   if(onBoarding != null)
   {
-    if(token != null) widget = ShopLayout();
+    if(token != null) widget = Layout();
     else widget = LoginScreen();
   }
-  else widget= OnBoardingScreen();
+  else widget= OnBoardingView();
 
 
   runApp(MyApp(
@@ -96,21 +93,20 @@ class MyApp extends StatelessWidget {
           listener: (context, state) {},
           builder: (context, state) {
             return MaterialApp(
-              title: 'Shop',
+              title: 'PickBag',
               debugShowCheckedModeBanner: false,
               theme: lightTheme,
               darkTheme: darkTheme,
               themeMode: ThemeCubit.get(context).isDark
                   ? ThemeMode.dark
                   : ThemeMode.light,
-              // home: homeWidget,
               initialRoute: '/',
               routes: {
                 "/":(context)=>homeWidget,
                 DetailsScreen.routeName:(context) =>DetailsScreen(),
-                // CartScreen.routeName:(context) =>CartScreen(),
+                SplashView.routeName:(context) =>SplashView(),
                 CartScreen.routeName:(context) =>CartScreen(),
-                ShopLayout.routeName:(context) =>ShopLayout(),
+                Layout.routeName:(context) =>Layout(),
                 SettingsScreen.routeName:(context) =>SettingsScreen(),
                 SearchScreen.routeName:(context) =>SearchScreen(),
                 ProductsScreen.routeName:(context) =>ProductsScreen(),
@@ -120,34 +116,6 @@ class MyApp extends StatelessWidget {
                 LoginScreen.routeName:(context) =>LoginScreen(),
 
               },
-              // theme: ThemeData(primarySwatch: Colors.teal),
-              // home: Builder(builder: (BuildContext context) {
-              //   if(MediaQuery.of(context).size.width <= 560){
-              //     return MediaQuery(
-              //       data: MediaQuery.of(context).copyWith(
-              //         textScaleFactor: 0.8
-              //       ),
-              //         child: MobileScreen());
-              //   }
-              //   else{
-              //     return MediaQuery(
-              //         data: MediaQuery.of(context).copyWith(
-              //             textScaleFactor: 1.25,
-              //         ),
-              //         child: DesktopScreen());
-              //   }
-              // },),
-              //
-
-              // home: LayoutBuilder(
-              //     builder: (BuildContext context, BoxConstraints constraints) {
-              //      if(constraints.maxWidth <= 560){
-              //        print(constraints.maxWidth);
-              //        return MobileScreen();
-              //      }
-              //      else return DesktopScreen();
-              //     },
-              //    ),
             );
           },
         ));

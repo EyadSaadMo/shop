@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../features/presentation/auth/login/presentation/screens/shop_login_screen.dart';
+import '../../features/auth/login/presentaion/view/login_screen.dart';
 import '../network/local/cache_helper.dart';
 
 void signOut(context) {
   CacheHelper.removeData(key: 'token').then((value) {
     if (value) {
-      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (ctx)=>LoginScreen()), (route) => false);
+      Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
     }
   });
 }
