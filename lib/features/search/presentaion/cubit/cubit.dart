@@ -5,7 +5,7 @@ import 'package:flutter_challenges/features/search/presentaion/cubit/states.dart
 
 import '../../../../core/network/remote/dio_helper.dart';
 import '../../../../core/network/remote/end_points.dart';
-import '../../../../core/style/constants.dart';
+import '../../../../core/utilis/constants.dart';
 import '../../data/model/search_model.dart';
 
 class SearchCubit extends Cubit<SearchStates>{

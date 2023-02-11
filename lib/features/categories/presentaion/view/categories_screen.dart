@@ -22,7 +22,7 @@ class CategoriesScreen extends StatelessWidget {
           physics: BouncingScrollPhysics(),
             itemBuilder: (context, index) =>
             CategoriesItems(model: CategoriesCubit.get(context).categoriesModel!.data.data[index]),
-            separatorBuilder: (context, index) => myDivider(),
+            separatorBuilder: (context, index) => MyDivider(),
             itemCount: CategoriesCubit.get(context).categoriesModel!.data.data.length);
       },
     );

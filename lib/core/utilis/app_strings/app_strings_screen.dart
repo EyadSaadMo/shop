@@ -1,3 +1,5 @@
+import 'package:flutter_challenges/features/terms_and_condition/presentation/view/terms_condition_screen.dart';
+
 class AppStrings{
   static const appName = 'pickBag';
   static const appBarName = 'New Trend';
@@ -20,7 +22,7 @@ class AppStrings{
   static const loginDesc ='Login now to browse our hot offers';
   static const required ='required';
   static const invalidEmail ='invalid email';
-  static const email ='email';
+  static const email ='Email';
   static const passwordError ='password error';
   static const shortPassword ='password is too short';
   static const password ='Password';
@@ -31,7 +33,7 @@ class AppStrings{
   static const enterName ='Enter your name';
   static const nameError ='Enter valid name';
   static const phoneError ='Enter valid number';
-  static const phone ='phone';
+  static const phone ='Phone Number';
   static const haveAccount ='Already have an account?';
   static const totalAmount ='total amount:';
   static const addProductCart ='plz Add some products to your cart';
@@ -61,5 +63,12 @@ class AppStrings{
   static const orders ='Orders';
   static const signOut ='signOut';
   static const setting ='setting';
+  static const lE ='L.E';
+  static const noFavorite ='No Favorites yet,';
+  static const clickHere = 'Click Here';
+  static const seeProduct = ', to see our products.';
+  static const description = 'Description';
+  static const aboutUs = 'About us';
+  static const termsAndConditions = 'Terms And Conditions';
 
 }

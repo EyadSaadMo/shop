@@ -17,7 +17,7 @@ class SettingItem extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.grey[100],
           borderRadius: BorderRadius.circular(10.0),
-          border: Border.all(color: Colors.deepPurple),
+          // border: Border.all(color: Colors.deepPurple),
         ),
         child: Row(
           children: [

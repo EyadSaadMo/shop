@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_challenges/core/utilis/app_strings/app_strings_screen.dart';
+import 'package:flutter_challenges/features/home/presentaion/widgets/default_button.dart';
 import '../../../../../core/network/local/cache_helper.dart';
+import '../../../../../core/style/colors.dart';
 import '../../../../home/presentaion/view/shop_layout.dart';
 import '../../../register/presentaion/view/register_screen.dart';
-
-import '../../widgets/custom_button.dart';
 import '../../widgets/tff.dart';
 import '../../widgets/toast_screen.dart';
 import '../cubit/cubit.dart';
@@ -150,16 +150,15 @@ class LoginScreen extends StatelessWidget {
                           height: 30.0,
                         ),
                         if(state is! ShopLoginLoadingState)
-                    defaultButton(
-                    text: AppStrings.login,
-                    function: () {
-                        if (formKey.currentState!.validate()) {
-                        LoginCubit.get(context).userLogin(
-                            email: emailController.text,
-                            password: passwordController.text);
-                        }
-                    })
-                        else Center(child: CircularProgressIndicator()),
+                         MainButton(label: AppStrings.login,
+                             onPressed: (){
+                               if (formKey.currentState!.validate()) {
+                                 LoginCubit.get(context).userLogin(
+                                     email: emailController.text,
+                                     password: passwordController.text);
+                               }
+                             })
+                        else Center(child: CircularProgressIndicator(color: defaultColor,)),
 
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,

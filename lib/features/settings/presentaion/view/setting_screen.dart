@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_challenges/core/utilis/app_strings/app_strings_screen.dart';
 import 'package:flutter_challenges/features/auth/login/widgets/text_button.dart';
+import 'package:flutter_challenges/features/home/presentaion/widgets/default_button.dart';
 import 'package:flutter_challenges/features/profile/presentation/profile_cubit/profile_cubit.dart';
 import 'package:flutter_challenges/features/settings/presentaion/cubit/update_user_cubit.dart';
 import 'package:flutter_challenges/features/settings/presentaion/view/widgets/setting_item.dart';
 
-import '../../../../core/style/constants.dart';
+import '../../../../core/utilis/constants.dart';
 import '../../../about_us/presentation/view/about_us_screen.dart';
 import '../../../orders/presentation/orders_screen.dart';
 import '../../../profile/presentation/view/profile_screen.dart';
@@ -21,19 +22,19 @@ class SettingsScreen extends StatelessWidget {
     var phoneController = TextEditingController();
     var emailController = TextEditingController();
 
-    List settings = [
+    List<Map<String,dynamic>> settings = [
       {
-        'name': 'Orders',
+        'name': AppStrings.orders,
         'icon': Icons.shopping_bag,
         'function': OrdersScreen.routeName,
       },
       {
-        'name': 'About us',
+        'name': AppStrings.aboutUs,
         'icon': Icons.info_outlined,
         'function': AboutUsScreen.routeName,
       },
       {
-        'name': 'Terms and conditions',
+        'name': AppStrings.termsAndConditions,
         'icon': Icons.list,
         'function': TermsAndConditions.routeName,
       },
@@ -56,59 +57,45 @@ class SettingsScreen extends StatelessWidget {
                 padding: EdgeInsets.all(10.0),
                 margin: EdgeInsets.symmetric(horizontal: 10.0),
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.deepPurpleAccent),
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
+                    Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.deepPurpleAccent),
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/eyad.jpg'),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          width: 100,
-                          height: 100,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.deepPurpleAccent),
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              image: AssetImage('assets/images/icon.jpg'),
-                              fit: BoxFit.cover,
-                            ),
+                        Text(
+                          '${ProfileCubit.get(context).userModel!.data.name}',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.deepPurple,
                           ),
                         ),
-                        SizedBox(
-                          width: 10.0,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              '${ProfileCubit.get(context).userModel!.data.name}',
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.deepPurple,
-                              ),
-                            ),
-                            Text(
-                              '@${ProfileCubit.get(context).userModel!.data.name.replaceAll(' ', '').toLowerCase()}',
-                              style: TextStyle(
-                                fontSize: 15.0,
-                                fontStyle: FontStyle.italic,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ],
+                        Text(
+                          '@${ProfileCubit.get(context).userModel!.data.name.replaceAll(' ', '').toLowerCase()}',
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            fontStyle: FontStyle.italic,
+                            color: Colors.grey,
+                          ),
                         ),
                       ],
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.arrow_right,
-                        color: Colors.deepPurple,
-                        size: 40.0,
-                      ),
                     ),
                   ],
                 ),
@@ -118,30 +105,28 @@ class SettingsScreen extends StatelessWidget {
               height: 20.0,
             ),
             Expanded(
-              flex: 4,
-              child: ListView.separated(
+              flex: 3,
+              child: ListView.builder(
                 physics: BouncingScrollPhysics(),
+                itemCount: settings.length,
                 itemBuilder: (context, index) => SettingItem(
-                   name: settings[index]['name'],icon: settings[index]['icon'], onPressed:() {
+                   name: settings[index]['name'],
+                    icon: settings[index]['icon'],
+                    onPressed:() {
                   Navigator.of(context).pushNamed(
                     settings[index]['function'],
                   );
-                }),
-                separatorBuilder: (context, index) => Container(
-                  margin: EdgeInsets.symmetric(horizontal: 20.0),
-                  height: 1,
-                  color: Colors.grey,
+                }
                 ),
-                itemCount: settings.length,
               ),
             ),
             Expanded(
               flex: 1,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: defaultTextButton(
-                  text: AppStrings.logout,
-                  function: () {
+                child: MainButton(
+                  label: AppStrings.logout,
+                  onPressed: () {
                     signOut(context);
                   },
                 ),

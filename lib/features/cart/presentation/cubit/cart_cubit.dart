@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_challenges/features/cart/presentation/cubit/cart_state.dart';
 import '../../../../core/network/remote/dio_helper.dart';
 import '../../../../core/network/remote/end_points.dart';
-import '../../../../core/style/constants.dart';
+import '../../../../core/utilis/constants.dart';
 import '../../data/model/get_cart.dart';
 import '../../data/model/in_cart_product.dart';
 

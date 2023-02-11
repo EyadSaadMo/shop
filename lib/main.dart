@@ -6,7 +6,7 @@ import 'package:flutter_challenges/features/profile/presentation/view/profile_sc
 import 'package:flutter_challenges/features/search/presentaion/cubit/cubit.dart';
 import 'core/network/local/cache_helper.dart';
 import 'core/network/remote/dio_helper.dart';
-import 'core/style/constants.dart';
+import 'core/utilis/constants.dart';
 import 'core/theme/states.dart';
 import 'core/theme/theme_cubit.dart';
 import 'core/theme/themes.dart';

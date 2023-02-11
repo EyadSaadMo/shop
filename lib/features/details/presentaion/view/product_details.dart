@@ -9,6 +9,7 @@ import '../../../home/presentaion/cubit/cubit.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter_conditional_rendering/conditional.dart';
 import '../cubit/details_state.dart';
+
 class ProductDetails extends StatelessWidget {
   static const String routeName = '/product_details';
   @override
@@ -112,8 +113,8 @@ class ProductDetails extends StatelessWidget {
                                         children: [
                                           Text(
                                             productPrice.length == 5
-                                                ? '${productPrice.substring(0, 2)},${productPrice.substring(2, productPrice.length)} L.E'
-                                                : '$productPrice L.E',
+                                                ? '${productPrice.substring(0, 2)},${productPrice.substring(2, productPrice.length)} ${AppStrings.lE}'
+                                                : '$productPrice ${AppStrings.lE}',
                                             style: TextStyle(
                                               fontSize: 25.0,
                                               fontWeight: FontWeight.bold,
@@ -125,7 +126,7 @@ class ProductDetails extends StatelessWidget {
                                           ),
                                           if (product.discount != 0)
                                             Text(
-                                              '${product.oldPrice} L.E',
+                                              '${product.oldPrice}${AppStrings.lE}',
                                               style: TextStyle(
                                                 color: Colors.grey,
                                                 decoration:
@@ -169,7 +170,7 @@ class ProductDetails extends StatelessWidget {
                                     height: 20.0,
                                   ),
                                   Text(
-                                    'Description',
+                                    AppStrings.description,
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 15.0,
@@ -218,10 +219,10 @@ class ProductDetails extends StatelessWidget {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content:
-                                  const Text('Added to cart successfully!'),
+                                  const Text(AppStrings.addToCartSuccess),
                                   action: SnackBarAction(
                                     textColor: Colors.white,
-                                    label: 'Go to Cart',
+                                    label: AppStrings.goToCart,
                                     onPressed: () {
                                       CartCubit.get(context)
                                           .getInCartProducts();
@@ -232,7 +233,7 @@ class ProductDetails extends StatelessWidget {
                                   ),
                                 ),
                               );
-                              print('added to cart');
+                              print(AppStrings.addToCart);
                             }),
                       ),
                     ),

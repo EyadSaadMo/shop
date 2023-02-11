@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_options.dart';
-import 'package:flutter_challenges/features/products/widgets/see_all.dart';
-import '../../../core/utilis/app_strings/app_strings_screen.dart';
-import '../../categories/data/model/categories_model.dart';
-import '../../details/presentaion/cubit/details_cubit.dart';
-import '../../details/presentaion/view/product_details.dart';
-import '../../home/data/model/home_model.dart';
-import '../../home/presentaion/cubit/cubit.dart';
+import 'package:flutter_challenges/features/products/presentaion/widgets/see_all.dart';
+
+import '../../../../core/utilis/app_strings/app_strings_screen.dart';
+import '../../../categories/data/model/categories_model.dart';
+import '../../../details/presentaion/cubit/details_cubit.dart';
+import '../../../details/presentaion/view/product_details.dart';
+import '../../../home/data/model/home_model.dart';
+import '../../../home/presentaion/cubit/cubit.dart';
 import 'categories_items.dart';
 import 'grid_product.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -106,20 +107,7 @@ class BuildCarouselProduct extends StatelessWidget {
                     ),
               ),
             ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              'Keep up to our new products and sales..',
-              style: TextStyle(
-                fontSize: 15.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.deepPurple,
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
+           SizedBox(height: 35,),
           ],
         ),
       ),

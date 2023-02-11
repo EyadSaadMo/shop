@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_challenges/core/utilis/app_strings/app_strings_screen.dart';
+import 'package:flutter_challenges/features/home/presentaion/widgets/default_button.dart';
 import '../../../../../core/network/local/cache_helper.dart';
-import '../../../../../core/style/constants.dart';
+import '../../../../../core/utilis/constants.dart';
 import '../../../../home/presentaion/view/shop_layout.dart';
-import '../../../login/presentaion/cubit/cubit.dart';
 import '../../../login/presentaion/view/login_screen.dart';
-import '../../../login/widgets/custom_button.dart';
 import '../../../login/widgets/text_button.dart';
 import '../../../login/widgets/tff.dart';
 import '../../../login/widgets/toast_screen.dart';
@@ -31,21 +30,21 @@ class RegisterScreen extends StatelessWidget {
         child: BlocConsumer<RegisterCubit,RegisterStates>(
           listener: (context, state) {
             if (state is RegisterSuccessState) {
-              if (state.loginModel.status) {
-                print(state.loginModel.message);
-                print(state.loginModel.data.token);
+              if (state.registerModel.status) {
+                print(state.registerModel.message);
+                print(state.registerModel.registerDataModel!.token);
                 CacheHelper.saveData(
-                        key: 'token', value: state.loginModel.data.token)
+                        key: 'token', value: state.registerModel.registerDataModel!..token)
                     .then((value) {
-                  token = state.loginModel.data.token;
+                  token = state.registerModel.registerDataModel!.token;
                   Navigator.of(context).pushReplacementNamed(
                       Layout.routeName);
                 });
               }
               else {
-                print(state.loginModel.status);
+                print(state.registerModel.status);
                 showToast(
-                  msg: state.loginModel.message.toString(),
+                  msg: state.registerModel.message.toString(),
                   state: ToastStates.ERROR,
                 );
               }
@@ -168,10 +167,10 @@ class RegisterScreen extends StatelessWidget {
                                   label: AppStrings.password,
                                   prefix: Icons.lock,
                                   isPassword:
-                                      LoginCubit.get(context).isPassword,
-                                  suffix: LoginCubit.get(context).suffix,
+                                      RegisterCubit.get(context).isPassword,
+                                  suffix: RegisterCubit.get(context).suffix,
                                   suffixPressed: () {
-                                    LoginCubit.get(context)
+                                    RegisterCubit.get(context)
                                         .changePasswordVisibility();
                                   }),
                             ],
@@ -181,9 +180,9 @@ class RegisterScreen extends StatelessWidget {
                           height: 20.0,
                         ),
                         if(state is !RegisterLoadingState)
-                          defaultButton(
-                            text: AppStrings.register,
-                            function: () {
+                          MainButton(
+                            label: AppStrings.register,
+                            onPressed: () {
                               if (formKey.currentState!.validate()) {
                                 RegisterCubit.get(context).userRegister(
                                   name: nameController.text,
@@ -193,9 +192,6 @@ class RegisterScreen extends StatelessWidget {
                                 );
                                 Navigator.of(context).pushReplacementNamed(
                                     LoginScreen.routeName);
-                                // if(state is RegisterSuccessState)
-                                //   showToast(msg: state.loginModel.message.toString(), state: ToastStates.SUCCESS);
-                                // else if(state is RegisterErrorState) showToast(msg: state.error, state: ToastStates.ERROR);
                               }
                             },
                           )
@@ -207,7 +203,7 @@ class RegisterScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(AppStrings.haveAccount),
-                            defaultTextButton(
+                            MainTextButton(
                                 function: () {
                                  Navigator.of(context).pushNamed(LoginScreen.routeName);
                                 },

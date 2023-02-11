@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/utilis/app_strings/app_strings_screen.dart';
+import '../../../../core/utilis/app_strings/app_strings_screen.dart';
+
 
 class SeeAll extends StatelessWidget {
    final Function() onPressed;

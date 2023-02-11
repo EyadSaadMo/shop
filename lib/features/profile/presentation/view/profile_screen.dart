@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_challenges/features/auth/login/widgets/text_button.dart';
 
+import '../../../../core/utilis/app_strings/app_strings_screen.dart';
 import '../../../auth/login/widgets/tff.dart';
 import '../../../settings/presentaion/cubit/update_user_cubit.dart';
 import '../profile_cubit/profile_cubit.dart';
@@ -24,7 +25,7 @@ class ProfileScreen extends StatelessWidget {
         emailController.text = ProfileCubit.get(context).userModel!.data.email;
         return Scaffold(
           appBar: AppBar(
-            title: Text('Profile'),
+            title: Text(AppStrings.profile),
           ),
           body: SingleChildScrollView(
             padding: const EdgeInsets.all(20.0),
@@ -43,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
                           border: Border.all(color: Colors.deepPurpleAccent),
                           shape: BoxShape.circle,
                           image: DecorationImage(
-                            image: AssetImage('assets/images/icon.jpg'),
+                            image: AssetImage('assets/images/eyad.jpg'),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -80,41 +81,31 @@ class ProfileScreen extends StatelessWidget {
                       defaultFormField(
                         validate: (value){return null;},
                         controller: nameController,
-                        label: 'Name',
+                        label: AppStrings.name,
                         prefix: Icons.person,
                         type: TextInputType.name,
-                        // labelStylee: TextStyle(
-                        //   color: Colors.deepPurpleAccent,
-                        //   fontWeight: FontWeight.bold,
-                        // ),
                       ),
+                      SizedBox(height: 15,),
                       defaultFormField(
                         validate: (value){return null;},
                         controller: emailController,
-                        label: 'Email Address',
+                        label: AppStrings.emailAddress,
                         prefix: Icons.email,
                         type: TextInputType.emailAddress,
-                        // labelStylee: TextStyle(
-                        //   color: Colors.deepPurpleAccent,
-                        //   fontWeight: FontWeight.bold,
-                        // ),
                       ),
+                      SizedBox(height: 15,),
                       defaultFormField(
                         validate: (value){return null;},
                         controller: phoneController,
-                        label: 'Phone Number',
+                        label: AppStrings.phone,
                         prefix: Icons.phone,
                         type: TextInputType.phone,
-                        // labelStylee: TextStyle(
-                        //   color: Colors.deepPurpleAccent,
-                        //   fontWeight: FontWeight.bold,
-                        // ),
                       ),
                     ],
                   ),
                   SizedBox(height: 30),
-                  defaultTextButton(
-                    text: 'Update',
+                  MainTextButton(
+                    text: AppStrings.update,
                     function: () {
                       if (formKey.currentState!.validate()) {
                         UpdateUserCubit.get(context).updateUserData(

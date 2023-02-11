@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/network/remote/dio_helper.dart';
 import '../../../../core/network/remote/end_points.dart';
-import '../../../../core/style/constants.dart';
+import '../../../../core/utilis/constants.dart';
 import '../../../auth/login/data/model/login_model.dart';
 part 'profile_state.dart';
 

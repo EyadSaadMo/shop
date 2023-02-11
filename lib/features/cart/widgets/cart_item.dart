@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/style/constants.dart';
+import '../../../core/utilis/constants.dart';
 import '../../home/presentaion/cubit/cubit.dart';
 import '../data/model/get_cart.dart';
 import '../presentation/cubit/cart_cubit.dart';

@@ -4,7 +4,7 @@ import 'package:flutter_challenges/features/favoutites/data/model/change_favouri
 import 'package:flutter_challenges/features/home/presentaion/cubit/states.dart';
 import '../../../../core/network/remote/dio_helper.dart';
 import '../../../../core/network/remote/end_points.dart';
-import '../../../../core/style/constants.dart';
+import '../../../../core/utilis/constants.dart';
 import '../../../categories/presentaion/view/categories_screen.dart';
 import '../../../favoutites/data/model/favourites_model.dart';
 import '../../../favoutites/presentaion/view/favorite_screen.dart';

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/network/remote/dio_helper.dart';
-import '../../../../core/style/constants.dart';
+import '../../../../core/utilis/constants.dart';
 import '../../data/model/products_details_model.dart';
 import 'details_state.dart';
 
