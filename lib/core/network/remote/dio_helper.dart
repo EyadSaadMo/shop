@@ -57,6 +57,22 @@ class DioHelper {
     };
     return await dio.put(url, queryParameters: query,data: data);
   }
+
+  static Future<Response> deleteData({
+    required String url,
+    Map<String, dynamic>? query,
+    required String token,
+  }) async {
+    dio.options.headers = {
+      'Content-Type': 'application/json',
+      'lang': 'en',
+      'Authorization': token,
+    };
+    return await dio.delete(
+      url,
+      queryParameters: query,
+    );
+  }
 }
 
 // import 'dart:convert';

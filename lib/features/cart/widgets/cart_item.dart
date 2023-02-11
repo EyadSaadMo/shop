@@ -1,156 +1,158 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../core/style/colors.dart';
-import '../../../core/utilis/screen size/screen_size.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
+import '../../../core/style/constants.dart';
 import '../../home/presentaion/cubit/cubit.dart';
-import '../../home/presentaion/cubit/states.dart';
+import '../data/model/get_cart.dart';
+import '../presentation/cubit/cart_cubit.dart';
 
-class CartItem extends StatefulWidget {
-  dynamic model;
-   CartItem({Key? key,required this.model}) : super(key: key);
+class CartItem extends StatelessWidget {
 
-  @override
-  State<CartItem> createState() => _CartItemState();
-}
-
-class _CartItemState extends State<CartItem> {
+final  ProductInCart model;
+Function()? onPressed;
+   CartItem({Key? key, required this.model,this.onPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ShopCubit, ShopStates>(
-  listener: (context, state) {
-    // TODO: implement listener
-  },
-  builder: (context, state) {
-    var cubit = ShopCubit.get(context);
-    // Product model = ModalRoute.of(context)!.settings.arguments as Product;
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
+    return InkWell(
+      onTap: onPressed,
       child: Column(
         children: [
-          Row(
-            children: [
-              Expanded(child: Image(image: CachedNetworkImageProvider(widget.model.image),height: getProportionateScreenHeight(150),)),
-              SizedBox(
-                  width:  SizeConfig.screenWidth * 0.09
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.model.name,
-                      style: Theme.of(context).textTheme.subtitle1,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+          Container(
+            width: double.infinity,
+            //height: 150,
+            padding: EdgeInsets.symmetric(
+              horizontal: 10.0,
+              vertical: 20.0,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(30.0),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: 100,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.deepPurpleAccent),
+                    borderRadius: BorderRadius.circular(20.0),
+                    image: DecorationImage(
+                      image: NetworkImage(model.product!.image),
                     ),
-                    SizedBox(
-                        height:  getProportionateScreenHeight(15)
-                    ),
-                    Text(
-                      'price: ${widget.model.price}',
-                      style: Theme.of(context)
-                          .textTheme
-                          .subtitle1!
-                          .copyWith(color: defaultColor),
-                    ),
-                    SizedBox(
-                        height:  getProportionateScreenHeight(15)
-                    ),
-                    Row(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            CircleAvatar(
-                              radius: 20,
-                              child: IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    cubit.counter ==0? 0:cubit.counter--;
-                                  });
-                                },
-                                icon: Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 8),
-                                  child: Icon(
-                                    Icons.maximize_rounded,
-                                    color: Colors.white,
-                                  ),
-                                ),),
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        '${model.product!.name}',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              priceFix(model.product!.price.toString()),
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                color: Colors.deepPurple,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: Text('${cubit.counter}',style: Theme.of(context).textTheme.bodyText1,),
-                            ),
-                            CircleAvatar(
-                              radius: 20,
-                              child: IconButton(
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Row(
+                            children: [
+                              CircleAvatar(
+                                radius: 15,
+                                child: IconButton(
                                   onPressed: () {
-                                    setState(() {
-                                      cubit.counter++;
-                                    });
+                                    CartCubit.get(context)
+                                        .updateQuantityOfInCartProduct(
+                                        model.inCartID, model.quantity + 1);
                                   },
                                   icon: Icon(
                                     Icons.add,
-                                    color: Colors.white,
-                                  )),
+                                    size: 15,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                '${model.quantity}',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              CircleAvatar(
+                                radius: 15,
+                                child: IconButton(
+                                  onPressed: () {
+                                    if (model.quantity > 1) {
+                                      CartCubit.get(context)
+                                          .updateQuantityOfInCartProduct(
+                                          model.inCartID,
+                                          model.quantity - 1);
+                                    }
+                                  },
+                                  icon: Icon(
+                                    Icons.remove,
+                                    size: 15,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              CartCubit.get(context)
+                                  .deleteProductFromCart(model.inCartID);
+                            },
+                            icon: Icon(
+                              Icons.delete_forever,
+                              color: Colors.red[800],
+                              size: 30,
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    // IconButton(
-                    //   onPressed: () {
-                    //     ShopCubit.get(context)
-                    //         .addOrDeleteCartItem(model.id);
-                    //   },
-                    //   icon: CircleAvatar(
-                    //     radius: 15.0,
-                    //     backgroundColor: ShopCubit.get(context).cart[model.id] ? defaultColor : Colors.grey,
-                    //     child: Icon(
-                    //       Icons.favorite_border,
-                    //       size: 14,
-                    //       color: Colors.white,
-                    //     ),
-                    //   ),
-                    // ),
-
-                  ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-          // Expanded(child: SizedBox()),
-          // Padding(
-          //   padding: const EdgeInsets.all(20.0),
-          //   child: Row(
-          //     children: [
-          //       Text('SubTotal',style: Theme.of(context).textTheme.bodyText2,),
-          //       Spacer(),
-          //       Text('${widget.model.price}',style: Theme.of(context).textTheme.bodyText1,),
-          //     ],
-          //   ),
-          // ),
-          // Divider(height: 1,),
-          // Padding(
-          //   padding: const EdgeInsets.all(20.0),
-          //   child: Row(
-          //     children: [
-          //       Text('Total',style: Theme.of(context).textTheme.bodyText1,),
-          //       Spacer(),
-          //       Text('${widget.model.price*cubit.counter}',style: Theme.of(context).textTheme.bodyText1,),
-          //     ],
-          //   ),
-          // ),
-
         ],
       ),
     );
-  },
-);
-
   }
-}
 
+}

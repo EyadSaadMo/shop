@@ -35,4 +35,9 @@ class LoginCubit extends Cubit<LoginStates> {
         isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
     emit(ShopChangePasswordVisibilityState());
   }
+  bool rememberMe = false;
+  void changeRememberMeCheckBox() {
+    rememberMe = !rememberMe;
+    emit(ChangeRememberMeCheckBoxState());
+  }
 }

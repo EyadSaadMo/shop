@@ -6,6 +6,7 @@ import '../../../../core/utilis/screen size/screen_size.dart';
 import '../../../auth/login/widgets/divider.dart';
 import '../../widgets/categories_item.dart';
 import '../cubit/categories_cubit.dart';
+import '../cubit/categories_state.dart';
 
 class CategoriesScreen extends StatelessWidget {
   static const routeName = 'categories';

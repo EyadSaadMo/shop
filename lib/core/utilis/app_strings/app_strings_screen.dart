@@ -35,7 +35,7 @@ class AppStrings{
   static const haveAccount ='Already have an account?';
   static const totalAmount ='total amount:';
   static const addProductCart ='plz Add some products to your cart';
-  static const checkout ='Checkout';
+  static const checkout ='Check Out';
   static const productDetails ='Product Details';
   static const addProductFav ='plz Add some products to your Favorites';
   static const home ='home';
@@ -49,5 +49,17 @@ class AppStrings{
   static const emailAddress ='Email Address';
   static const update ='Update';
   static const logout ='Logout';
+  static const emptyCart ='Cart is EMPTY';
+  static const checkProductAndOrder = 'Check your product and order now!';
+  static const checkProducts = 'Check Products';
+  static const discount = 'DISCOUNT';
+  static const addToCart = 'Add to Cart';
+  static const addToCartSuccess = 'Added to cart successfully!';
+  static const goToCart = 'Go to Cart';
+  static const newProduct = 'New Products';
+  static const seeAll ='See all';
+  static const orders ='Orders';
+  static const signOut ='signOut';
+  static const setting ='setting';
 
 }

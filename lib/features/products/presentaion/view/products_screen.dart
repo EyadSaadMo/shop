@@ -1,48 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_challenges/core/utilis/screen%20size/screen_size.dart';
-import 'package:flutter_challenges/features/home/widgets/build_home_item.dart';
-
+import 'package:flutter_challenges/features/categories/presentaion/cubit/categories_cubit.dart';
+import 'package:flutter_conditional_rendering/conditional.dart';
+import '../../../../core/style/constants.dart';
 import '../../../auth/login/widgets/toast_screen.dart';
 import '../../../home/presentaion/cubit/cubit.dart';
 import '../../../home/presentaion/cubit/states.dart';
+import '../../widgets/caresol_prduct.dart';
 
 
 class ProductsScreen extends StatelessWidget {
-  static const routeName = 'products';
+  static const routeName = 'product_screen';
+  @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
-
-
+    print(token);
     return BlocConsumer<ShopCubit, ShopStates>(
-      listener: (context, state)
-      {
-        if(state is ShopSuccessChangeFavouritesState){
-          if(state.model.status == false){
-            showToast(msg: state.model.message, state: ToastStates.ERROR);
-          }else
+      listener: (context, state) {
+        if (state is ShopSuccessChangeFavoritesState) {
+          if (!state.model.status) {
             showToast(msg: state.model.message, state: ToastStates.SUCCESS);
-
+          }
         }
       },
-
       builder: (context, state) {
-        if (ShopCubit
-            .get(context)
-            .homeModel != null
-            // &&
-            // CategoriesCubit
-            //     .get(context)
-            //     .categoriesModel != null
-        )
-          return HomeItems(model: ShopCubit.get(context).homeModel,
-              // categoriesModel: CategoriesCubit.get(context).categoriesModel
-          );
-        else
-          return Center(child: CircularProgressIndicator());
-      }
-      );
+        return Conditional.single(
+          context: context,
+          conditionBuilder: (context) =>
+          ShopCubit.get(context).homeModel != null &&
+              CategoriesCubit.get(context).categoriesModel != null,
+          widgetBuilder: (context) => BuildCarouselProduct(
+             model: ShopCubit.get(context).homeModel,
+              categoriesModel: CategoriesCubit.get(context).categoriesModel,
+              ),
+          fallbackBuilder: (context) => Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
+      },
+    );
+  }
 }
 
 
-}
+
+
+

@@ -123,6 +123,30 @@ class LoginScreen extends StatelessWidget {
                           prefix: Icons.lock_outline,
                         ),
                         SizedBox(
+                          height: 10.0,
+                        ),
+                        Row(
+                          children: [
+                            Checkbox(
+                              value: LoginCubit.get(context).rememberMe,
+                              onChanged: (value) {
+                                LoginCubit.get(context)..changeRememberMeCheckBox();
+                              },
+                            ),
+                            InkWell(
+                              child: Text(
+                                'Remember me',
+                                style: TextStyle(
+                                  fontSize: 15.0,
+                                ),
+                              ),
+                              onTap: () {
+                                LoginCubit.get(context).changeRememberMeCheckBox();
+                              },
+                            ),
+                          ],
+                        ),
+                        SizedBox(
                           height: 30.0,
                         ),
                         if(state is! ShopLoginLoadingState)

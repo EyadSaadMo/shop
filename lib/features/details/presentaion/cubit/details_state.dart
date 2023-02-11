@@ -1,28 +1,6 @@
-part of 'details_cubit.dart';
+abstract class DetailsStates{}
 
-abstract class DetailsState extends Equatable {
-  const DetailsState();
-}
-
-class DetailsInitial extends DetailsState {
-  @override
-  List<Object> get props => [];
-}
-class ProductDetailsLoadingState extends DetailsState {
-  @override
-  // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
-}
-class ProductDetailsSuccessState extends DetailsState {
-  @override
-  // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
-}
-class ProductDetailsErrorState extends DetailsState {
-  late final String error;
-  ProductDetailsErrorState(this.error);
-
-  @override
-  // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
-}
+class DetailsInitial extends DetailsStates{}
+class LoadingGetProductDetailsState extends DetailsStates{}
+class SuccessGetProductDetailsState extends DetailsStates{}
+class ErrorGetProductDetailsState extends DetailsStates{}

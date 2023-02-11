@@ -44,6 +44,8 @@ dev_dependencies:
   flutter_launcher_icons:
   equatable:
   cached_network_image:
+  smooth_page_indicator:
+  flutter_conditional_rendering:
   http:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

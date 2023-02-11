@@ -19,6 +19,11 @@ class UserDataErrorState extends ProfileState{
   // TODO: implement props
   List<Object?> get props => throw UnimplementedError();
 }
+class LoadingUpdateProfileDataState extends ProfileState{
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
+}
 class UserDataSuccessState extends ProfileState{
  late final LoginModel loginModel;
 
