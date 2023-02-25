@@ -5,7 +5,7 @@ import 'package:flutter_challenges/core/utilis/app_strings/app_strings_screen.da
 import 'package:flutter_challenges/features/onboarding/presentation/view/splash.dart';
 import '../../../../../core/utilis/media_query.dart';
 import '../../model/model.dart';
-import '../widget/widget.dart';
+import '../widget/dot_item.dart';
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({Key? key}) : super(key: key);
@@ -130,7 +130,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                           ),
                           child: Text(
                             AppStrings.skip,
-                            style: const TextStyle(color: defaultColor),
+                            style: const TextStyle(color: defaultColor,fontSize: 18),
                           ),
                         ),
                         ElevatedButton(
@@ -155,7 +155,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                                 fontSize:
                                 (kWidth(context) <= 550) ? 13 : 17),
                           ),
-                          child: const Text(AppStrings.next),
+                          child: const Text(AppStrings.next,style: TextStyle(fontSize: 14),),
                         ),
                       ],
                     ),

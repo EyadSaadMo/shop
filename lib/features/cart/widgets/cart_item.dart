@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../../core/utilis/constants.dart';
-import '../../home/presentaion/cubit/cubit.dart';
 import '../data/model/get_cart.dart';
 import '../presentation/cubit/cart_cubit.dart';
 
@@ -20,13 +19,12 @@ Function()? onPressed;
         children: [
           Container(
             width: double.infinity,
-            //height: 150,
             padding: EdgeInsets.symmetric(
               horizontal: 10.0,
               vertical: 20.0,
             ),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color:Theme.of(context).appBarTheme.backgroundColor,
               borderRadius: BorderRadius.circular(30.0),
             ),
             child: Row(
@@ -36,10 +34,9 @@ Function()? onPressed;
                   width: 100,
                   height: 100,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.deepPurpleAccent),
                     borderRadius: BorderRadius.circular(20.0),
                     image: DecorationImage(
-                      image: NetworkImage(model.product!.image),
+                      image: CachedNetworkImageProvider(model.product!.image),
                     ),
                   ),
                 ),
@@ -55,10 +52,7 @@ Function()? onPressed;
                       ),
                       Text(
                         '${model.product!.name}',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style:Theme.of(context).textTheme.bodyText1,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                       ),
@@ -70,11 +64,7 @@ Function()? onPressed;
                           Expanded(
                             child: Text(
                               priceFix(model.product!.price.toString()),
-                              style: TextStyle(
-                                fontSize: 18.0,
-                                color: Colors.deepPurple,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style:Theme.of(context).textTheme.bodyText2,
                             ),
                           ),
                           SizedBox(
@@ -101,10 +91,7 @@ Function()? onPressed;
                               ),
                               Text(
                                 '${model.quantity}',
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style:Theme.of(context).textTheme.bodyText1,
                               ),
                               SizedBox(
                                 width: 5,

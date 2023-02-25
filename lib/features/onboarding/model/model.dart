@@ -27,7 +27,7 @@ List<OnBoardingContents> contents = [
   ),
   OnBoardingContents(
     title: AppStrings.onBoardingTitle3,
-    image: "assets/images/added_bag.jpg",
+    image: "assets/images/fast_delivery.jpg",
     desc: AppStrings.onBoardingSubTitle3,
   ),
 ];

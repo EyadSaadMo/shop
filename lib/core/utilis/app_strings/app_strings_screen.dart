@@ -1,8 +1,6 @@
-import 'package:flutter_challenges/features/terms_and_condition/presentation/view/terms_condition_screen.dart';
-
 class AppStrings{
   static const appName = 'pickBag';
-  static const appBarName = 'New Trend';
+  static const appBarName = 'pickBag';
   static const apiError = 'error in status code';
   static const updateProduct = 'Update Product';
   static const productName = 'Product Name';
@@ -13,19 +11,33 @@ class AppStrings{
   static const skip = 'Skip';
   static const next = 'next';
   static const onBoardingTitle1 ='pickBag App';
-  static const onBoardingSubTitle1 =    '"Welcome to pickBag, Let’s shop!';
+  static const onBoardingSubTitle1 =    'Welcome to pickBag, Let’s shop!';
  static const onBoardingTitle2 ='Bag Cart';
   static const onBoardingSubTitle2 = 'Your App has cart to put items on it';
- static const onBoardingTitle3 ='Easy connection';
-  static const onBoardingSubTitle3 ='We show the easy way to shop. \nJust stay at home with us';
+ static const onBoardingTitle3 ='Fast Delivery';
+  static const onBoardingSubTitle3 ='within 2 days at most';
   static const login ='LOGIN';
   static const loginDesc ='Login now to browse our hot offers';
   static const required ='required';
   static const invalidEmail ='invalid email';
   static const email ='Email';
+  static const send ='SEND';
+  static const enterEmailAddress ='Please, enter your email address, you will receive a Code to create a new password via email. ';
+  static const enterLink ='Please, enter the code that was sent to your email. The Code is Valid for 5 minutes';
   static const passwordError ='password error';
   static const shortPassword ='password is too short';
+  static const shortName ='name is too short';
   static const password ='Password';
+  static const code ='Code';
+  static const invalidCode ='invalid code';
+  static const forgetPassword ='Forgot your password ?';
+  static const forgotPassword ='Forgot password';
+  static const verifyEmail ='Verify Email';
+  static const oldPassword ='Old Password';
+  static const newPassword ='New Password';
+  static const updatePassword ='Update Password';
+  static const PasswordNotMatched ='Password Not Matched';
+  static const confirmNewPassword ='Confirm New Password';
   static const dontHaveAccount ='Don\'t have an account?';
   static const RegisterNow ='Register Now';
   static const register ='REGISTER';
@@ -34,10 +46,10 @@ class AppStrings{
   static const nameError ='Enter valid name';
   static const phoneError ='Enter valid number';
   static const phone ='Phone Number';
-  static const haveAccount ='Already have an account?';
+  static const haveAccount ='Already have an account ?';
   static const totalAmount ='total amount:';
   static const addProductCart ='plz Add some products to your cart';
-  static const checkout ='Check Out';
+  static const checkout ='Checkout';
   static const productDetails ='Product Details';
   static const addProductFav ='plz Add some products to your Favorites';
   static const home ='home';
@@ -50,7 +62,7 @@ class AppStrings{
   static const name ='Name';
   static const emailAddress ='Email Address';
   static const update ='Update';
-  static const logout ='Logout';
+  static const logout ='LOGOUT';
   static const emptyCart ='Cart is EMPTY';
   static const checkProductAndOrder = 'Check your product and order now!';
   static const checkProducts = 'Check Products';
@@ -58,17 +70,27 @@ class AppStrings{
   static const addToCart = 'Add to Cart';
   static const addToCartSuccess = 'Added to cart successfully!';
   static const goToCart = 'Go to Cart';
+  static const currentLocation = 'current location';
+  static const addNewLocation = 'Add new location';
   static const newProduct = 'New Products';
   static const seeAll ='See all';
-  static const orders ='Orders';
+  static const orders ='My Orders';
+  static const ordersDetails ='Orders Details';
   static const signOut ='signOut';
-  static const setting ='setting';
+  static const setting ='settings';
   static const lE ='L.E';
   static const noFavorite ='No Favorites yet,';
   static const clickHere = 'Click Here';
   static const seeProduct = ', to see our products.';
   static const description = 'Description';
+  static const selectNewAddress = 'Select New Address';
   static const aboutUs = 'About us';
   static const termsAndConditions = 'Terms And Conditions';
+  static const shoppingCart = 'Shopping Cart';
+  static const deliveryMethod = 'Delivery Method';
+  static const personalInfo = 'Personal information';
+  static const editAvatar = 'Edit Avatar, name, email';
+  static const changePassword = 'Change Password';
+  static const updateAndChangePassword = 'Update & Change Password';
 
 }

@@ -29,6 +29,7 @@ class SearchScreen extends StatelessWidget {
               child: Column(
                 children: [
                   defaultFormField(
+                    context: context,
                       controller: searchController,
                       label: 'Search',
                       validate: (value) {
@@ -37,7 +38,7 @@ class SearchScreen extends StatelessWidget {
                         }
                         return null;
                       },
-                      prefix: Icons.search,
+                      prefix: Container(child:  Icon(Icons.search,color: Theme.of(context).textTheme.bodyText1!.color,),),
                       type: TextInputType.text,
                       onFieldSubmit: (value) {
                         SearchCubit.get(context).search(value);

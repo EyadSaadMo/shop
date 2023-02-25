@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_challenges/core/style/colors.dart';
 import 'package:flutter_challenges/core/utilis/app_strings/app_strings_screen.dart';
 
 import '../../../home/presentaion/cubit/cubit.dart';
 import '../../data/model/favourites_model.dart';
-
+import 'package:cached_network_image/cached_network_image.dart';
 class FavoriteItem extends StatelessWidget {
   final FavouritesData model;
   const FavoriteItem({Key? key,required this.model}) : super(key: key);
@@ -12,6 +13,7 @@ class FavoriteItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Container(
       height: 130.0,
+      // color: Theme.of(context).appBarTheme.backgroundColor,
       padding: EdgeInsets.all(10.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,9 +23,8 @@ class FavoriteItem extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
                 child: Container(
-                  color: Colors.white,
                   child: Image(
-                    image: NetworkImage(model.product.image),
+                    image: CachedNetworkImageProvider(model.product.image),
                     width: 140.0,
                     height: 120.0,
                   ),
@@ -60,10 +61,7 @@ class FavoriteItem extends StatelessWidget {
               children: [
                 Text(
                   model.product.name,
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style:Theme.of(context).textTheme.bodyText1,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   textAlign: TextAlign.start,
@@ -79,12 +77,7 @@ class FavoriteItem extends StatelessWidget {
                       children: [
                         Text(
                           '${model.product.price} ${AppStrings.lE}',
-                          style: TextStyle(
-                            fontSize: 17.0,
-                            color: Colors.deepPurple,
-                            fontWeight: FontWeight.bold,
-                            decorationStyle: TextDecorationStyle.dashed,
-                          ),
+                          style:Theme.of(context).textTheme.bodyText2,
                         ),
                         SizedBox(
                           width: 10.0,
@@ -117,7 +110,7 @@ class FavoriteItem extends StatelessWidget {
                                 : Icons.favorite_border,
                             color: ShopCubit.get(context)
                                 .favorites[model.product.id]!
-                                ? Colors.deepPurpleAccent
+                                ? defaultColor
                                 : Colors.grey[800],
                           ),
                           onPressed: () {

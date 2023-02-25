@@ -5,6 +5,7 @@ import 'package:flutter_challenges/features/home/presentaion/widgets/default_but
 import '../../../../../core/network/local/cache_helper.dart';
 import '../../../../../core/style/colors.dart';
 import '../../../../home/presentaion/view/shop_layout.dart';
+import '../../../forgetPassword/presentation/views/forgot_pass_screen.dart';
 import '../../../register/presentaion/view/register_screen.dart';
 import '../../widgets/tff.dart';
 import '../../widgets/toast_screen.dart';
@@ -16,8 +17,8 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var emailController = TextEditingController();
-    var passwordController = TextEditingController();
+   final TextEditingController emailController = TextEditingController();
+   final TextEditingController passwordController = TextEditingController();
     var formKey = GlobalKey<FormState>();
     return BlocProvider(
       create: (context) => LoginCubit(),
@@ -71,6 +72,7 @@ class LoginScreen extends StatelessWidget {
                         Container(
                           width: double.infinity,
                           child: defaultFormField(
+                            context: context,
                             validate: (value) {
                               if (value!.isEmpty || value.trim().length == 0) {
                                 return AppStrings.required;
@@ -84,13 +86,14 @@ class LoginScreen extends StatelessWidget {
                             controller: emailController,
                             type: TextInputType.emailAddress,
                             label: AppStrings.email,
-                            prefix: Icons.email_outlined,
+                            prefix: Container(child:  Icon(Icons.email_outlined,color: Theme.of(context).textTheme.bodyText1!.color,),),
                           ),
                         ),
                         SizedBox(
                           height: 20.0,
                         ),
                         defaultFormField(
+                          context: context,
                           controller: passwordController,
                           type: TextInputType.visiblePassword,
                           suffix: LoginCubit.get(context).suffix,
@@ -120,7 +123,17 @@ class LoginScreen extends StatelessWidget {
                             return null;
                           },
                           label: AppStrings.password,
-                          prefix: Icons.lock_outline,
+                          prefix: Container(child:  Icon(Icons.lock_outline,color: Theme.of(context).textTheme.bodyText1!.color,),),
+                        ),
+                        SizedBox(height: 5,),
+                        Row(
+                          children: [
+                            SizedBox(),
+                            Spacer(),
+                            InkWell(child: Text(AppStrings.forgetPassword),onTap: (){
+                              Navigator.of(context).pushNamed(ForgotPassword.routeName);
+                            },),
+                          ],
                         ),
                         SizedBox(
                           height: 10.0,
@@ -150,7 +163,7 @@ class LoginScreen extends StatelessWidget {
                           height: 30.0,
                         ),
                         if(state is! ShopLoginLoadingState)
-                         MainButton(label: AppStrings.login,
+                         MainButton(text: AppStrings.login,
                              onPressed: (){
                                if (formKey.currentState!.validate()) {
                                  LoginCubit.get(context).userLogin(

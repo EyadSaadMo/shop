@@ -6,7 +6,6 @@ import '../../../../../core/network/local/cache_helper.dart';
 import '../../../../../core/utilis/constants.dart';
 import '../../../../home/presentaion/view/shop_layout.dart';
 import '../../../login/presentaion/view/login_screen.dart';
-import '../../../login/widgets/text_button.dart';
 import '../../../login/widgets/tff.dart';
 import '../../../login/widgets/toast_screen.dart';
 
@@ -20,11 +19,11 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var emailController = TextEditingController();
-    var passwordController = TextEditingController();
-    var nameController = TextEditingController();
-    var phoneController = TextEditingController();
-    var formKey = GlobalKey<FormState>();
+   final TextEditingController emailController = TextEditingController();
+   final TextEditingController passwordController = TextEditingController();
+   final TextEditingController nameController = TextEditingController();
+   final TextEditingController phoneController = TextEditingController();
+   final formKey = GlobalKey<FormState>();
     return BlocProvider(
         create: (context) => RegisterCubit(),
         child: BlocConsumer<RegisterCubit,RegisterStates>(
@@ -100,6 +99,7 @@ class RegisterScreen extends StatelessWidget {
                           child: Column(
                             children: [
                               defaultFormField(
+                                context:context,
                                 validate: (value) {
                                   if (value.isEmpty) {
                                     return AppStrings.required;
@@ -112,12 +112,13 @@ class RegisterScreen extends StatelessWidget {
                                 controller: nameController,
                                 type: TextInputType.name,
                                 label: AppStrings.enterName,
-                                prefix: Icons.person,
+                                prefix: Container(child:  Icon(Icons.person,color: Theme.of(context).textTheme.bodyText1!.color,),),
                               ),
                               SizedBox(
                                 height: 15.0,
                               ),
                               defaultFormField(
+                                context: context,
                                 validate: (value) {
                                   if (value!.isEmpty || value.trim().length == 0) {
                                     return AppStrings.required;
@@ -131,12 +132,13 @@ class RegisterScreen extends StatelessWidget {
                                 controller: emailController,
                                 type: TextInputType.emailAddress,
                                 label: AppStrings.email,
-                                prefix: Icons.email_outlined,
+                                prefix: Container(child:  Icon(Icons.email_outlined,color: Theme.of(context).textTheme.bodyText1!.color,),),
                               ),
                               SizedBox(
                                 height: 20.0,
                               ),
                               defaultFormField(
+                                context: context,
                                 validate: (value) {
                                   if (value.isEmpty) {
                                     return AppStrings.required;
@@ -148,12 +150,13 @@ class RegisterScreen extends StatelessWidget {
                                 controller: phoneController,
                                 type: TextInputType.number,
                                 label: AppStrings.phone,
-                                prefix: Icons.phone,
+                                prefix: Container(child:  Icon(Icons.phone_outlined,color: Theme.of(context).textTheme.bodyText1!.color,),),
                               ),
                               SizedBox(
                                 height: 20.0,
                               ),
                               defaultFormField(
+                                context: context,
                                   validate: (value) {
                                     if (value.isEmpty) {
                                       return AppStrings.required;
@@ -165,7 +168,7 @@ class RegisterScreen extends StatelessWidget {
                                   controller: passwordController,
                                   type: TextInputType.visiblePassword,
                                   label: AppStrings.password,
-                                  prefix: Icons.lock,
+                                  prefix: Container(child:  Icon(Icons.lock,color: Theme.of(context).textTheme.bodyText1!.color,),),
                                   isPassword:
                                       RegisterCubit.get(context).isPassword,
                                   suffix: RegisterCubit.get(context).suffix,
@@ -181,7 +184,7 @@ class RegisterScreen extends StatelessWidget {
                         ),
                         if(state is !RegisterLoadingState)
                           MainButton(
-                            label: AppStrings.register,
+                            text: AppStrings.register,
                             onPressed: () {
                               if (formKey.currentState!.validate()) {
                                 RegisterCubit.get(context).userRegister(
@@ -202,12 +205,12 @@ class RegisterScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(AppStrings.haveAccount),
-                            MainTextButton(
-                                function: () {
+                            Text(AppStrings.haveAccount,style: Theme.of(context).textTheme.bodyText1,),
+                            TextButton(
+                                onPressed: () {
                                  Navigator.of(context).pushNamed(LoginScreen.routeName);
                                 },
-                                text: AppStrings.login),
+                                child:Text( AppStrings.login)),
                           ],
                         ),
                       ],

@@ -8,8 +8,10 @@
  const SEARCH ='products/search';
  const PRODUCT_DETAILS ='products';
  const CART ='carts';
+ const CHANGE_PASSWORD ='change-password';
+ const VERIFY_EMAIL ='verify-email';
  String? code;
- bool? isSkipedOnBoarding;
+ // bool? isSkipedOnBoarding;
  bool? isLoggedIN;
  /*
   const Url = 'https://student.valuxapps.com/api/';
@@ -24,3 +26,7 @@ const LOGIN = '${Url}login';
  const PRODUCT_DETAILS ='${Url}products';
  const CART ='${Url}carts';
   */
+
+ // const String paymentbaseUrlPath = 'https://accept.paymob.com/api';
+ const String placesAutocompeleteUrlPath ="https://maps.googleapis.com/maps/api/place/autocomplete/json";
+ const String placesUrlPath = "https://maps.googleapis.com/maps/api/place/details/json";

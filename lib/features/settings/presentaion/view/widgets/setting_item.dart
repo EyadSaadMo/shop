@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class SettingItem extends StatelessWidget {
-  final String name;
-  IconData? icon;
+  final String text1;
+  final String text2;
   Function()?onPressed;
-   SettingItem({Key? key,required this.name,this.icon,this.onPressed}) : super(key: key);
+   SettingItem({Key? key,required this.text1,required this.text2,this.onPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,26 +15,24 @@ class SettingItem extends StatelessWidget {
         margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         height: 70.0,
         decoration: BoxDecoration(
-          color: Colors.grey[100],
-          borderRadius: BorderRadius.circular(10.0),
-          // border: Border.all(color: Colors.deepPurple),
+          color: Theme.of(context).appBarTheme.backgroundColor,
         ),
-        child: Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(
-              icon,
-              size: 30,
-              color: Colors.deepPurple,
-            ),
+            Text(text1,style: Theme.of(context).textTheme.bodyText1,),
             SizedBox(
-              width: 10.0,
+              height: 5.0,
             ),
-            Text(
-              name,
-              style: TextStyle(
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
-              ),
+            Row(
+              children: [
+                Text(
+                  text2,
+                  style: Theme.of(context).textTheme.subtitle1,
+                ),
+                Spacer(),
+                Icon(Icons.navigate_next_outlined,size: 20,),
+              ],
             ),
           ],
         ),

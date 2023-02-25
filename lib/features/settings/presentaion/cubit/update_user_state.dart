@@ -1,12 +1,16 @@
 part of 'update_user_cubit.dart';
 
 abstract class UpdateUserState extends Equatable {
-  const UpdateUserState();
 }
 
 class UpdateUserInitial extends UpdateUserState {
   @override
   List<Object> get props => [];
+}
+class UpdateUserLoadingState extends UpdateUserState{
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
 }
 class UpdateUserSuccessState extends UpdateUserState{
   late final LoginModel loginModel;
@@ -17,12 +21,17 @@ class UpdateUserSuccessState extends UpdateUserState{
   // TODO: implement props
   List<Object?> get props => [loginModel];
 }
-class UpdateUserLoadingState extends UpdateUserState{
+class UpdateUserErrorState extends UpdateUserState{
   @override
   // TODO: implement props
   List<Object?> get props => throw UnimplementedError();
 }
-class UpdateUserErrorState extends UpdateUserState{
+class ImageAssignedState extends UpdateUserState{
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
+}
+class UploadImagesLoadingState extends UpdateUserState{
   @override
   // TODO: implement props
   List<Object?> get props => throw UnimplementedError();

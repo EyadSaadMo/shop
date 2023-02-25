@@ -1,144 +1,91 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_challenges/core/utilis/app_strings/app_strings_screen.dart';
-import 'package:flutter_challenges/features/auth/login/widgets/text_button.dart';
-import 'package:flutter_challenges/features/home/presentaion/widgets/default_button.dart';
+import 'package:flutter_challenges/features/orders/presentation/view/orders_screen.dart';
 import 'package:flutter_challenges/features/profile/presentation/profile_cubit/profile_cubit.dart';
-import 'package:flutter_challenges/features/settings/presentaion/cubit/update_user_cubit.dart';
 import 'package:flutter_challenges/features/settings/presentaion/view/widgets/setting_item.dart';
-
+import '../../../../core/theme/theme_cubit.dart';
 import '../../../../core/utilis/constants.dart';
-import '../../../about_us/presentation/view/about_us_screen.dart';
-import '../../../orders/presentation/orders_screen.dart';
+import '../../../auth/changePassword/presntation/views/change_pass_screen.dart';
 import '../../../profile/presentation/view/profile_screen.dart';
-import '../../../terms_and_condition/presentation/view/terms_condition_screen.dart';
-
 
 class SettingsScreen extends StatelessWidget {
   static const routeName  = 'setting_screen';
   @override
   Widget build(BuildContext context) {
-    var nameController = TextEditingController();
-    var phoneController = TextEditingController();
-    var emailController = TextEditingController();
+    TextEditingController nameController = TextEditingController();
+    TextEditingController phoneController = TextEditingController();
+    TextEditingController emailController = TextEditingController();
 
-    List<Map<String,dynamic>> settings = [
-      {
-        'name': AppStrings.orders,
-        'icon': Icons.shopping_bag,
-        'function': OrdersScreen.routeName,
-      },
-      {
-        'name': AppStrings.aboutUs,
-        'icon': Icons.info_outlined,
-        'function': AboutUsScreen.routeName,
-      },
-      {
-        'name': AppStrings.termsAndConditions,
-        'icon': Icons.list,
-        'function': TermsAndConditions.routeName,
-      },
-    ];
-    return BlocConsumer<ProfileCubit, ProfileState>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        nameController.text = ProfileCubit.get(context).userModel!.data.name;
-        phoneController.text = ProfileCubit.get(context).userModel!.data.phone;
-        emailController.text = ProfileCubit.get(context).userModel!.data.email;
-        return Column(
-          children: [
-            InkWell(
-              onTap: () {
-                Navigator.of(context).pushNamed(
-                  ProfileScreen.routeName,
-                );
-              },
-              child: Container(
+    return Scaffold(
+      appBar:  AppBar(
+        centerTitle: true,
+        title: Text(
+          AppStrings.setting,
+        ),
+        actions: [
+          IconButton(onPressed: (){
+            ThemeCubit.get(context).changeAppMode();
+          }, icon: Icon(Icons.light_mode_outlined,color: Theme.of(context).primaryIconTheme.color,)),
+        ],
+      ),
+
+      body: BlocConsumer<ProfileCubit, ProfileState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          nameController.text = ProfileCubit.get(context).userModel!.data.name;
+          phoneController.text = ProfileCubit.get(context).userModel!.data.phone;
+          emailController.text = ProfileCubit.get(context).userModel!.data.email;
+          return Column(
+            children: [
+              Container(
                 padding: EdgeInsets.all(10.0),
                 margin: EdgeInsets.symmetric(horizontal: 10.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
-                child: Row(
+                child: Column(
                   children: [
                     Container(
                       width: 100,
                       height: 100,
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.deepPurpleAccent),
+                        // border: Border.all(color: Colors.deepPurpleAccent),
                         shape: BoxShape.circle,
                         image: DecorationImage(
-                          image: AssetImage('assets/images/eyad.jpg'),
+                          image: AssetImage('assets/images/person.jpg'),
                           fit: BoxFit.cover,
                         ),
                       ),
                     ),
                     SizedBox(
-                      width: 10.0,
+                      height: 10.0,
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
+                    Text(
                           '${ProfileCubit.get(context).userModel!.data.name}',
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.deepPurple,
-                          ),
+                          style:Theme.of(context).textTheme.bodyText1,
                         ),
-                        Text(
-                          '@${ProfileCubit.get(context).userModel!.data.name.replaceAll(' ', '').toLowerCase()}',
-                          style: TextStyle(
-                            fontSize: 15.0,
-                            fontStyle: FontStyle.italic,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
+                    SizedBox(
+                      height: 5.0,
                     ),
+                    Text(
+                          '@${ProfileCubit.get(context).userModel!.data.email.replaceAll(' ', '').toLowerCase()}',
+                          style:Theme.of(context).textTheme.subtitle1,
+                        ),
                   ],
                 ),
               ),
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            Expanded(
-              flex: 3,
-              child: ListView.builder(
-                physics: BouncingScrollPhysics(),
-                itemCount: settings.length,
-                itemBuilder: (context, index) => SettingItem(
-                   name: settings[index]['name'],
-                    icon: settings[index]['icon'],
-                    onPressed:() {
-                  Navigator.of(context).pushNamed(
-                    settings[index]['function'],
-                  );
-                }
-                ),
+              SizedBox(
+                height: 10.0,
               ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: MainButton(
-                  label: AppStrings.logout,
-                  onPressed: () {
-                    signOut(context);
-                  },
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 40.0,
-            ),
-          ],
-        );
-      },
+                    SettingItem(text1: AppStrings.profile, text2: AppStrings.editAvatar,onPressed: (){Navigator.of(context).pushNamed(ProfileScreen.routeName);},),
+                      SettingItem(text1: AppStrings.orders, text2: AppStrings.ordersDetails,onPressed: (){Navigator.of(context).pushNamed(OrdersScreen.routeName);},),
+                      SettingItem(text1: AppStrings.changePassword, text2: AppStrings.updateAndChangePassword,onPressed: (){Navigator.of(context).pushNamed(ChangePasswordScreen.routeName);},),
+              Center(child: ElevatedButton(style: TextButton.styleFrom(backgroundColor: Colors.red),onPressed: (){signOut(context);}, child: Text(AppStrings.logout)),),
+            ],
+          );
+        },
+      ),
     );
   }
 }
-

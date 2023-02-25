@@ -13,36 +13,32 @@ ThemeData lightTheme= ThemeData(
     ),
     subtitle1: TextStyle(
       fontSize: 14.0,
-      fontWeight: FontWeight.w600,
-      color: Colors.black,
+      color: Colors.grey,
       height: 1.3,
     ),
+    bodyText2: TextStyle(
+      fontSize: 18.0,
+      fontWeight: FontWeight.w600,
+      color:defaultColor,
+    ),
   ),
-  // ده بيغير كل حاجه معاك في ال app
+  primaryIconTheme: IconThemeData(color: Colors.white),
   primarySwatch: defaultColor,
-  //عشان أغير لون ال scaffold في الكل
   scaffoldBackgroundColor: Colors.white,
-  // first thing
   appBarTheme: AppBarTheme(
-    titleSpacing: 20.0,
-    // فيها حاجات تنطبق على ال app bar اللي في ال app كله
-    backgroundColor: Colors.white,
-    elevation: 0.0,
-    // عاوز بقا أغير ال status bar
-    backwardsCompatibility: false,
+    elevation: 5,
+ backwardsCompatibility: false,
     titleTextStyle: TextStyle(
       fontSize: 20.0,
       fontWeight: FontWeight.bold,
       fontFamily: 'Jannah',
-      color: Colors.black,
+      color: Colors.white,
     ),
-    // عشان أعدل في لون الحاجات اللي في ال action جوه ال app bar
     iconTheme: IconThemeData(
-      color: Colors.black,
+      color: Colors.white,
     ),
-    // عملته false عشان اعرف اتحكم في ال status bar
     systemOverlayStyle: SystemUiOverlayStyle(
-      statusBarColor: Colors.white,
+      statusBarColor: defaultColor,
       statusBarIconBrightness: Brightness.dark,
     ),
   ),
@@ -58,10 +54,9 @@ ThemeData lightTheme= ThemeData(
   fontFamily: 'Jannah',
 );
 ThemeData darkTheme= ThemeData(
+  primaryIconTheme: IconThemeData(color: Colors.white),
   primarySwatch: defaultColor,
   scaffoldBackgroundColor: HexColor('333739'),
-  //عشان أغير لون ال scaffold في الكل
-  // first thing
   appBarTheme: AppBarTheme(
     titleSpacing: 20.0,
     // فيها حاجات تنطبق على ال app bar اللي في ال app كله
@@ -101,11 +96,16 @@ ThemeData darkTheme= ThemeData(
       color: Colors.white,
     ),
     subtitle1: TextStyle(
-      fontSize: 14.0,
+    fontSize: 14.0,
+    color: Colors.grey,
+    height: 1.3,
+  ),
+    bodyText2: TextStyle(
+      fontSize: 18.0,
       fontWeight: FontWeight.w600,
       color: Colors.white,
-      height: 1.3,
     ),
-  ),
+
+),
   fontFamily: 'Jannah',
 );

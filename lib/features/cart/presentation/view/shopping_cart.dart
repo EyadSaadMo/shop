@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_challenges/core/utilis/app_strings/app_strings_screen.dart';
 import 'package:flutter_challenges/features/cart/presentation/cubit/cart_state.dart';
 import 'package:flutter_challenges/features/cart/widgets/cart_item.dart';
+import 'package:flutter_challenges/features/checkout/presentation/checkout_screen.dart';
 import 'package:flutter_challenges/features/details/presentaion/cubit/details_cubit.dart';
 import '../../../../core/utilis/constants.dart';
 import '../../../details/presentaion/view/product_details.dart';
@@ -19,20 +20,14 @@ class ShoppingCart extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: Text('Shopping Cart'),
+            title: Text(AppStrings.shoppingCart),
           ),
           body:
         state is! LoadingGetCartState?
-           ( (CartCubit
-              .get(context)
-              .getCart!
-              .cartDetails!
-              .products
-              .length !=
-              0)
-              ? Container(
+           ((CartCubit.get(context).getCart!.cartDetails!.products.length != 0)?
+               Container(
             decoration: BoxDecoration(
-              color: Colors.grey[100],
+              color: Theme.of(context).appBarTheme.backgroundColor,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(30.0),
                 topRight: Radius.circular(30.0),
@@ -90,7 +85,7 @@ class ShoppingCart extends StatelessWidget {
                     padding:
                     const EdgeInsets.symmetric(horizontal: 20.0),
                     decoration: BoxDecoration(
-                      color: Colors.grey[200],
+                      color: Theme.of(context).appBarTheme.backgroundColor,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(30.0),
                         topRight: Radius.circular(30.0),
@@ -116,8 +111,10 @@ class ShoppingCart extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10.0),
                             child: MainButton(
-                              label: AppStrings.checkout,
-                              onPressed: () {},
+                              text: AppStrings.checkout,
+                              onPressed: () {
+                                Navigator.of(context).pushNamed(CheckoutScreen.routeName);
+                              },
                             ),
                           ),
                         ),
@@ -137,40 +134,42 @@ class ShoppingCart extends StatelessWidget {
                   height: 250,
                   width: 250,
                 ),
+                SizedBox(height: 15,),
                 Text(
                   AppStrings.emptyCart,
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
+                SizedBox(
+                  height: 10.0,
                 ),
                 Text(
                   AppStrings.checkProductAndOrder,
-                  style: TextStyle(
-                    fontSize: 15.0,
-                    color: Colors.deepPurple,
-                  ),
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
                 SizedBox(
                   height: 20.0,
                 ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(20.0),
-                  child: MainButton(
-                    label: AppStrings.checkProducts,
-                    onPressed: () {
-                      Navigator.of(context).pushReplacementNamed(
-                        Layout.routeName,
-                      );
-                    },
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20.0),
+                    child: MainButton(
+                      text: AppStrings.checkProducts,
+                      onPressed: () {
+                        Navigator.of(context).pushReplacementNamed(
+                          Layout.routeName,
+                        );
+                      },
+                    ),
                   ),
                 ),
               ],
             ),
-          )):
-        Center(
+          ))
+       : Center(
         child: CircularProgressIndicator(),
-        ));
+        ),
+        );
         }
     );
   }

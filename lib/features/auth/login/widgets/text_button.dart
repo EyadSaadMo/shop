@@ -1,18 +1,17 @@
-
 import 'package:flutter/material.dart';
 class MainTextButton extends StatelessWidget {
 
-  final Function() function;
-  final String? text;
-  const MainTextButton({Key? key, required this.function, this.text}) : super(key: key);
+  final Function() onPressed;
+  final String text;
+  const MainTextButton({Key? key, required this.onPressed,required this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
+    return ElevatedButton(
         onPressed: () {
-          function();
+          onPressed();
         },
-        child: Text(text!.toUpperCase()));
+        child: Text(text));
   }
 }
 

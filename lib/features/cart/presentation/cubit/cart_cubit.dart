@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_challenges/core/utilis/app_strings/app_strings_screen.dart';
 import 'package:flutter_challenges/features/cart/presentation/cubit/cart_state.dart';
 import '../../../../core/network/remote/dio_helper.dart';
 import '../../../../core/network/remote/end_points.dart';
@@ -11,7 +12,7 @@ import '../../data/model/in_cart_product.dart';
 class CartCubit extends Cubit<CartStates> {
   CartCubit() : super(CartInitialState());
   static CartCubit get(context) => BlocProvider.of(context);
-  AddToCart? addToCart;
+  AddToCartModel? addToCart;
 
   void addProductToCart(int productID) {
     emit(LoadingProductToCartState());
@@ -19,8 +20,8 @@ class CartCubit extends Cubit<CartStates> {
     DioHelper.postData(url: CART, token: token, data: {
       'product_id': '$productID',
     }).then((value) {
-      addToCart = AddToCart.fromJson(value.data);
-      print('${addToCart!.status}, Added Successfully.');
+      addToCart = AddToCartModel.fromJson(value.data);
+      print('${addToCart!.status}, ${AppStrings.addToCartSuccess}');
       emit(SuccessAddProductToCartState());
     }).catchError((error) {
       print(error.toString());
@@ -28,12 +29,12 @@ class CartCubit extends Cubit<CartStates> {
     });
   }
 
-  GetCart? getCart;
+  GetCartModel? getCart;
 
   void getInCartProducts() {
     emit(LoadingGetCartState());
     DioHelper.getData(url: CART, token: token).then((value) {
-      getCart = GetCart.fromJson(value.data);
+      getCart = GetCartModel.fromJson(value.data);
       emit(SuccessGetCartState());
     }).catchError((error) {
       print(error.toString());

@@ -1,33 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_challenges/core/style/colors.dart';
 
 class MainButton extends StatelessWidget {
-      final String label;
+      final String text;
      final Function() onPressed;
      Color? textColor;
-  Color? buttonColor;
 
-   MainButton({Key? key, required this.label, required this.onPressed,this.textColor,this.buttonColor}) : super(key: key);
+   MainButton({Key? key, required this.text, required this.onPressed,this.textColor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 50,
+      height: 60,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: buttonColor,
+          backgroundColor: defaultColor,
           padding: EdgeInsets.all(20.0),
           elevation: 10,
         ),
         onPressed: onPressed,
         child: Text(
-          label,
+          text,
           style: TextStyle(
             color: textColor,
+            fontSize: 17,
+            fontWeight: FontWeight.bold
           ),
         ),
       ),
     );
-
   }
 }

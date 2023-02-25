@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_challenges/core/style/colors.dart';
 
 Widget defaultFormField({
   required String label,
-  required IconData prefix,
+  required Widget prefix,
   required TextInputType type,
   required TextEditingController controller,
   required FormFieldValidator validate,
@@ -11,8 +12,10 @@ Widget defaultFormField({
   Function()? suffixPressed,
   Function(String val)? onFieldSubmit,
   bool isClickable = true,
+  required BuildContext context,
 }) =>
     TextFormField(
+      style: Theme.of(context).textTheme.bodyText1,
       controller: controller,
       keyboardType: type,
       obscureText: isPassword,
@@ -22,35 +25,8 @@ Widget defaultFormField({
       // onTap: onTap,
       validator: validate,
       decoration: InputDecoration(
-        labelText: label,
-        prefixIcon: Icon(
-          prefix,
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
-          borderSide: BorderSide(
-            color: Colors.redAccent,
-          ),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
-          borderSide: BorderSide(
-            color: Colors.redAccent,
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20.0),
-          borderSide: BorderSide(
-            color: Colors.deepPurpleAccent,
-          ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
-          borderSide: BorderSide(
-            color: Colors.deepPurple.withOpacity(0.5),
-            width: 2.0,
-          ),
-        ),
+        labelText: label,labelStyle: Theme.of(context).textTheme.bodyText1,
+        prefixIcon:prefix,
         suffixIcon: suffix != null
             ? IconButton(
           onPressed: suffixPressed,

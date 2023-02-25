@@ -1,8 +1,8 @@
-class AddToCart {
+class AddToCartModel {
   late bool status;
   InCartDetails? inCartDetails;
 
-  AddToCart.fromJson(Map<String, dynamic> json) {
+  AddToCartModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     inCartDetails = InCartDetails.fromJson(json['data']);
   }

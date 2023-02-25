@@ -23,7 +23,7 @@ class BuildCarouselProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey[200],
+      color: Theme.of(context).appBarTheme.backgroundColor,
       padding: EdgeInsets.symmetric(horizontal: 10.0),
       child: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
@@ -62,7 +62,7 @@ class BuildCarouselProduct extends StatelessWidget {
             SeeAll(
                 onPressed: ShopCubit.get(context).incIndex, title: AppStrings.categories),
             SizedBox(
-              height: 10.0,
+              height: 30.0,
             ),
             Container(
               height: 125,
@@ -90,9 +90,9 @@ class BuildCarouselProduct extends StatelessWidget {
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               crossAxisCount: 2,
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10,
-              childAspectRatio: 1 / 2.5,
+              mainAxisSpacing: 20,
+              crossAxisSpacing: 20,
+              childAspectRatio: 1 / 1.85,
               children: List.generate(
                 model!.data.products.length,
                     (index) =>

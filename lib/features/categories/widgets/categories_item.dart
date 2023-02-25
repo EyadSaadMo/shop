@@ -23,10 +23,10 @@ class CategoriesItems extends StatelessWidget {
           ),
           Text(
             model.name,
-            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+            style:Theme.of(context).textTheme.bodyText1,
           ),
           Spacer(),
-          Icon(Icons.navigate_next_sharp),
+          Icon(Icons.navigate_next_sharp,color: Theme.of(context).primaryColor,),
         ],
       ),
     );

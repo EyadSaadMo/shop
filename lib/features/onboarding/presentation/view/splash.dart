@@ -70,7 +70,7 @@ class SplashViewState extends State<SplashView>
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'assets/images/icon.jpg',
+                'assets/images/logo.png',
                 width: animation!.value * 250,
                 height: animation!.value * 250,
               ),

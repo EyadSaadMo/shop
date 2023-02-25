@@ -1,8 +1,8 @@
-class GetCart {
+class GetCartModel {
   late bool status;
   CartDetails? cartDetails;
 
-  GetCart.fromJson(Map<String, dynamic> json) {
+  GetCartModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     cartDetails = CartDetails.fromJson(json['data']);
   }

@@ -17,20 +17,13 @@ class SeeAll extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
+            style: Theme.of(context).textTheme.bodyText1,
           ),
           Text(
             AppStrings.seeAll,
-            style: TextStyle(
-              fontSize: 15.0,
-              fontWeight: FontWeight.bold,
-              color: Colors.deepPurple,
-            ),
-          ),
+            style: Theme.of(context).textTheme.bodyText2,
+
+    ),
         ],
       ),
     );
